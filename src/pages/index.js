@@ -22,6 +22,7 @@ const SocialItem = ({ children, href, title }) => (
     <a
       href={href}
       target="_blank"
+      rel="noopener noreferrer"
       style={{
         textDecoration: 'none',
         color: '#663399',
@@ -54,6 +55,7 @@ const IndexPage = () => {
       render={data => {
         return (
           <Layout>
+            <img src={require(`../images/image.jpg`)} alt="homepage-figure" />
             <h1>Hi there.</h1>
             <p>
               My name is Metin Senturk. Welcome to my site. I am a data
@@ -63,7 +65,7 @@ const IndexPage = () => {
             <p>
               Working with data is my passion. I do machine learning projects. I
               am developing projects in computer vision with OpenCV. I code in
-              Python and R. 
+              Python and R.
             </p>
             <p>
               I like building software. Currently, I am developing this website
@@ -73,7 +75,12 @@ const IndexPage = () => {
                 href={
                   'https://github.com/metinsenturk/metinsenturk.github.io.git'
                 }
-                target={'_blank'}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  textDecoration: 'none',
+                  color: '#663399',
+                }}
               >
                 here
               </a>
