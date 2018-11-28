@@ -9,7 +9,6 @@ module.exports = {
       email: "metinsenturk@me.com",
     }
   },
-  pathPrefix: "/metinsenturk.github.io",
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-sharp',
