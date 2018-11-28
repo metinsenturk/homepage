@@ -16,9 +16,9 @@ PS: I am really bad at UI elements. I will be happy get any suggestions/ tutoria
 
 ### Version 0.0.1 - Building The Basics (Current)
 
-- [ ] creating a dev/ coming soon page
-- [ ] publishing the dev
-- [ ] creating development branches
+- [x] creating a dev/ coming soon page
+- [x] publishing the dev
+- [x] creating development branches
 
 ### Version 0.0.2 - Building The Basics (Upcoming)
 
