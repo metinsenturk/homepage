@@ -63,7 +63,7 @@ exports.createPages = ({ actions, graphql }) => {
       createPage({
         path: `album${node.slug}`,
         component: albumPostTemplate,
-        context: { slug: node.slug },
+        context: { slug: node.slug, relativeDirectory: node.slug.replace(/[/]/g, '') },
       })
     })
   })
