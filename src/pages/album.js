@@ -10,7 +10,7 @@ class Album extends Component {
       <Layout>
         {albums.map(({ node }, index) => (
           <div key={index}>
-            <Link to={`album/${node.imagesPath}`}>
+            <Link to={`album${node.slug}`}>
               <h3>{node.title}</h3>
             </Link>
             <p>{node.description}</p>
@@ -30,7 +30,7 @@ export const query = graphql`
         node {
           title
           description
-          imagesPath
+          slug
         }
       }
     }

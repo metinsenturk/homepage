@@ -11,7 +11,7 @@ class Blog extends Component {
       <Layout>
         {posts.map(({ node }, index) => (
           <div key={index}>
-            <Link to={`blog/${node.fields.slug}`}><h3>{node.frontmatter.title}</h3></Link>
+            <Link to={`blog${node.fields.slug}`}><h3>{node.frontmatter.title}</h3></Link>
             <p>{node.frontmatter.description}</p>
           </div>
         ))}
