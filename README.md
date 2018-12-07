@@ -25,7 +25,7 @@ PS: I am really bad at UI elements. I will be happy get any suggestions/ tutoria
 - [ ] blog, gallery pages
 - [ ] Creating Nav
 - [ ] blog-detail, gallery-detail pages
-- [ ] dynamically creating pages
+- [x] dynamically creating pages
 - [ ] tags and categories
 - [ ] Helmet on every page
 - [ ] Many more..
