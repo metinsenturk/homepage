@@ -2,9 +2,27 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
+import { Grommet } from 'grommet'
+import { createGlobalStyle } from 'styled-components'
 
 import Header from '../header/header'
-import './layout.css'
+//import './layout.css'
+
+const GlobalSyle = createGlobalStyle`
+  body {
+    margin: 0
+  }
+`
+
+const theme = {
+  global: {
+    font: {
+      family: 'Roboto',
+      size: '14px',
+      height: '20px',
+    },
+  },
+};
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -21,24 +39,18 @@ const Layout = ({ children }) => (
       <>
         <Helmet
           title={data.site.siteMetadata.title}
+          htmlAttributes={{ lang: 'en' }}
           meta={[
-            { name: 'description', content: 'Metin Senturk\'s personal website. It has a blog and a list of albums. ' },
-            { name: 'keywords', content: 'blog, photography, development, react, data, datascience, engineer' },
+            { name: 'description', content: data.site.siteMetadata.description },
+            { name: 'keywords', content: data.site.siteMetadata.keywords },
           ]}
-        >
-          <html lang="en" />
-        </Helmet>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <div
-          style={{
-            margin: '0 auto',
-            maxWidth: 960,
-            padding: '0px 1.0875rem 1.45rem',
-            paddingTop: 0,
-          }}
-        >
+
+        />
+        <Grommet theme={theme}>
+        <GlobalSyle />
+          <Header siteTitle={data.site.siteMetadata.title} />
           {children}
-        </div>
+        </Grommet>
       </>
     )}
   />
