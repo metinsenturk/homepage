@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Box, Heading, Anchor, ResponsiveContext, Menu, Button, Text } from 'grommet'
-import { Actions } from 'grommet-icons';
+import { Box, Heading, Anchor, ResponsiveContext, Menu, Button } from 'grommet'
+import { Actions, Action } from 'grommet-icons';
 
 const Header2 = (props) => {
   let theme = props.theme
@@ -28,30 +28,28 @@ const Header2 = (props) => {
       as="header"
       direction="row"
       background="brand"
-      pad={{ left: "large", right: "large" }}
       gap="medium"
       align="center"
-      justify="between"
-      flex={false}
+      justify="around"
     >
       <Anchor to="/" style={{ textDecoration: 'none', boxShadow: 'none' }} as={Link}>
         <Heading level="1"> MS</Heading>
       </Anchor>
 
-      <ResponsiveContext>
+      <ResponsiveContext.Consumer>
         {size => {
           if (size !== "xsmall" && size !== "small") {
             return (
               <Box as="nav" gap="medium" direction="row" align="center">
                 {items.map(item => (
                   <Anchor to={item.path} as={Link}>
-                    <Heading level="3">{item.label}</Heading>
+                    {item.label}
                   </Anchor>
                 ))}
+
                 <Button onClick={theme.onClick}>
-                  <Box gap="small" direction="row-responsive" pad="small" border={{color:"border", size:"small"}} background="dark" round="xsmall">
-                    <Actions size="medium" />
-                    <Text>{theme.name === 'dark' ? 'Ligthen' : 'Darken'}</Text>
+                  <Box>
+                    {theme.status ? <Action size="medium" /> : <Actions size="medium" />}
                   </Box>
                 </Button>
               </Box>)
@@ -64,12 +62,10 @@ const Header2 = (props) => {
                   dropProps={{ align: { top: "bottom", left: "left" } }}
                   items={[{ label: "Blog", onClick: () => (alert("sfs")) }]}
                 />
-
-
               </Box>)
           }
         }}
-      </ResponsiveContext>
+      </ResponsiveContext.Consumer>
     </Box>
   )
 }

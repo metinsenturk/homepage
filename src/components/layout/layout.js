@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-import { Grommet } from 'grommet'
+import { Grommet, Box } from 'grommet'
 import { base, dark, grommet } from 'grommet/themes';
 import { createGlobalStyle } from 'styled-components'
 
@@ -24,7 +24,7 @@ const theme = {
   global: {
     font: {
       family: 'Roboto',
-      size: '14px',
+      size: '24px',
       height: '20px',
     },
   },
@@ -64,10 +64,16 @@ class Layout extends React.Component {
               ]}
 
             />
-            <Grommet theme={this.state.theme ? GrommetThemes.base : GrommetThemes.dark}>
+            <Grommet theme={this.state.theme ? theme : GrommetThemes.dark}>
               <GlobalSyle />
-              <Header theme={ {name: '', onClick: this.onThemeChange} } />
-              {this.props.children}
+              <Header theme={{ status: this.state.theme, onClick: this.onThemeChange }} />
+              <Box
+                gap="medium"
+                justify="around"
+              >
+                {this.props.children}
+              </Box>
+
             </Grommet>
           </>
         )}
