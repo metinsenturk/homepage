@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Box, Heading, Anchor, ResponsiveContext, Menu } from 'grommet'
-
+import { Box, Heading, Anchor, ResponsiveContext, Menu, Button, Text } from 'grommet'
+import { Actions } from 'grommet-icons';
 
 const Header2 = (props) => {
+  let theme = props.theme
   let items = [
     {
       active: true,
@@ -41,12 +42,18 @@ const Header2 = (props) => {
         {size => {
           if (size !== "xsmall" && size !== "small") {
             return (
-              <Box as="nav" gap="medium" direction="row">
+              <Box as="nav" gap="medium" direction="row" align="center">
                 {items.map(item => (
                   <Anchor to={item.path} as={Link}>
                     <Heading level="3">{item.label}</Heading>
                   </Anchor>
                 ))}
+                <Button onClick={theme.onClick}>
+                  <Box gap="small" direction="row-responsive" pad="small" border={{color:"border", size:"small"}} background="dark" round="xsmall">
+                    <Actions size="medium" />
+                    <Text>{theme.name === 'dark' ? 'Ligthen' : 'Darken'}</Text>
+                  </Box>
+                </Button>
               </Box>)
           } else {
             return (
