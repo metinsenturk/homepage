@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-import { Grommet, Box } from 'grommet'
+import { Grommet } from 'grommet'
 import { base, dark, grommet } from 'grommet/themes';
 import { createGlobalStyle } from 'styled-components'
 
@@ -67,13 +67,7 @@ class Layout extends React.Component {
             <Grommet theme={this.state.theme ? theme : GrommetThemes.dark}>
               <GlobalSyle />
               <Header theme={{ status: this.state.theme, onClick: this.onThemeChange }} />
-              <Box
-                gap="medium"
-                justify="around"
-              >
-                {this.props.children}
-              </Box>
-
+              {this.props.children}
             </Grommet>
           </>
         )}
