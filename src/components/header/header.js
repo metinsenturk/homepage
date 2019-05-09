@@ -1,73 +1,116 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Box, Heading, Anchor, ResponsiveContext, Menu, Button } from 'grommet'
-import { Actions, Action } from 'grommet-icons';
+import { Box, Heading, Anchor, ResponsiveContext, Menu, Text, Button, Layer } from 'grommet'
+import { Actions, Action, Apps } from 'grommet-icons';
 
-const Header2 = (props) => {
-  let theme = props.theme
-  let items = [
-    {
-      active: true,
-      label: "Blog",
-      path: "/blog"
-    },
-    {
-      active: false,
-      label: "Gallery",
-      path: "/album"
-    },
-    {
-      active: false,
-      label: "Contact",
-      path: "/contact"
-    },
-  ]
+const ITEMS = [
+  {
+    active: true,
+    label: "/",
+    path: "/"
+  },
+  {
+    active: true,
+    label: "Blog",
+    path: "/blog"
+  },
+  {
+    active: false,
+    label: "Gallery",
+    path: "/album"
+  },
+  {
+    active: false,
+    label: "Contact",
+    path: "/contact"
+  },
+]
 
+const MobileHeader = (props) => {
   return (
-    <Box
-      as="header"
-      direction="row"
-      background="brand"
-      gap="medium"
-      align="center"
-      justify="around"
-    >
-      <Anchor to="/" style={{ textDecoration: 'none', boxShadow: 'none' }} as={Link}>
-        <Heading level="1"> MS</Heading>
-      </Anchor>
+    <Layer position="top" full="vertical" modal={true} plain={true}>
+      <Box background="brand" fill="vertical" align="center" gap="large" pad="large">
+        <Box pad={{ horizontal: 'medium', vertical: 'small' }}>
+          <Heading size='large'>Menu</Heading>
+        </Box>
+        {ITEMS.map(item => (
+          <Anchor to={item.path} as={Link} onClick={props.onClick}>
+            <Box pad={{ horizontal: 'medium', vertical: 'large' }}>
+              <Text size='large'>{item.label}</Text>
+            </Box>
+          </Anchor>
+        ))}
 
-      <ResponsiveContext.Consumer>
-        {size => {
-          if (size !== "xsmall" && size !== "small") {
-            return (
-              <Box as="nav" gap="medium" direction="row" align="center">
-                {items.map(item => (
-                  <Anchor to={item.path} as={Link}>
-                    {item.label}
-                  </Anchor>
-                ))}
-
-                <Button onClick={theme.onClick}>
-                  <Box>
-                    {theme.status ? <Action size="medium" /> : <Actions size="medium" />}
-                  </Box>
-                </Button>
-              </Box>)
-          } else {
-            return (
-              <Box>
-                <Menu
-                  label="Menu"
-                  size="large"
-                  dropProps={{ align: { top: "bottom", left: "left" } }}
-                  items={[{ label: "Blog", onClick: () => (alert("sfs")) }]}
-                />
-              </Box>)
-          }
-        }}
-      </ResponsiveContext.Consumer>
-    </Box>
+      </Box>
+    </Layer>
   )
+}
+
+class Header2 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+    this.state = { mobileMenu: false };
+  }
+
+  onClick() {
+    this.setState(prevState => ({ mobileMenu: !prevState.mobileMenu }))
+  }
+
+  render() {
+    return (
+      <Box
+        as="header"
+        direction="row"
+        background="brand"
+        gap="medium"
+        align="center"
+        justify="around"
+      >
+        <Anchor to="/" style={{ textDecoration: 'none', boxShadow: 'none' }} as={Link}>
+          <Heading level="1"> MS</Heading>
+        </Anchor>
+
+        <ResponsiveContext.Consumer>
+          {size => {
+            if (size !== "xsmall" && size !== "small") {
+              return (
+                <Box as="nav" gap="medium" direction="row" align="center">
+                  {ITEMS.map(item => (
+                    <Anchor to={item.path} as={Link}>
+                      {item.label}
+                    </Anchor>
+                  ))}
+
+                  <Button onClick={this.props.theme.onClick}>
+                    <Box>
+                      {this.props.theme.status ? <Action size="medium" /> : <Actions size="medium" />}
+                    </Box>
+                  </Button>
+                </Box>)
+            } else {
+              return (
+                <Box>
+                  {/*<Menu
+                    label="Menu"
+                    size="large"
+                    dropProps={{ align: { top: "bottom", left: "left" } }}
+                    items={[{ label: "Blog", onClick: () => (alert("sfs")) }]}
+                  />*/}
+                  {this.state.mobileMenu ? (
+                    <MobileHeader onClick={this.onClick}/>
+                  ) : (
+                      <Button onClick={this.onClick}>
+                        <Apps />
+                      </Button>
+                    )}
+                </Box>)
+            }
+          }}
+        </ResponsiveContext.Consumer>
+      </Box>
+    )
+  }
 }
 
 // eslint-disable-next-line 
