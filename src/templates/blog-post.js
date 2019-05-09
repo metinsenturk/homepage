@@ -9,7 +9,7 @@ export default ({ data }) => {
     <div>
       <div>
         <h1>{frontmatter.title}</h1>
-        <h2>{frontmatter.ms_date}</h2>
+        <h2>{frontmatter.date}</h2>
         <div dangerouslySetInnerHTML={{ __html: html }} />
         <Link to={'blog/'}>Back</Link>
       </div>
@@ -24,7 +24,7 @@ export const query = graphql`
       frontmatter {
         title
         description
-        ms_date
+        date
       }
     }
   }

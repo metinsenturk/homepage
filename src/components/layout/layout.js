@@ -64,7 +64,7 @@ class Layout extends React.Component {
               ]}
 
             />
-            <Grommet theme={this.state.theme ? theme : GrommetThemes.dark}>
+            <Grommet theme={this.state.theme ? GrommetThemes.grommet : GrommetThemes.dark} full={true}>
               <GlobalSyle />
               <Header theme={{ status: this.state.theme, onClick: this.onThemeChange }} />
               {this.props.children}
