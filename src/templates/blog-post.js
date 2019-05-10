@@ -27,10 +27,10 @@ export default ({ data }) => {
           <Markdown components={{
             "p": {
               "component": "Paragraph",
-              "props": { "size": "large", "wrap": "true" }
+              "props": { "size": "large" }
             },
             "pre": {
-              "props": { "size": "large", "wrap": "true" }
+              "props": { "size": "large" }
             }
           }}>
             {html}

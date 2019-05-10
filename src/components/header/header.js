@@ -33,8 +33,8 @@ const MobileHeader = (props) => {
         <Box pad={{ horizontal: 'medium', vertical: 'small' }}>
           <Heading size='large'>Menu</Heading>
         </Box>
-        {ITEMS.map(item => (
-          <Anchor to={item.path} as={Link} onClick={props.onClick}>
+        {ITEMS.map((item, index) => (
+          <Anchor key={index} to={item.path} as={Link} onClick={props.onClick}>
             <Box pad={{ horizontal: 'medium', vertical: 'large' }}>
               <Text size='large'>{item.label}</Text>
             </Box>
@@ -76,8 +76,8 @@ class Header2 extends React.Component {
             if (size !== "xsmall" && size !== "small") {
               return (
                 <Box as="nav" gap="medium" direction="row" align="center">
-                  {ITEMS.map(item => (
-                    <Anchor to={item.path} as={Link}>
+                  {ITEMS.map((item, index) => (
+                    <Anchor key={index} to={item.path} as={Link}>
                       {item.label}
                     </Anchor>
                   ))}

@@ -2,7 +2,7 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import Gallery from 'react-photo-gallery'
-import { Box, Markdown, Heading, Text, Anchor } from "grommet"
+import { Box, Heading, Text, Anchor } from "grommet"
 import { Previous } from "grommet-icons"
 import Layout from '../components/layout/layout'
 import ShareVia from '../components/share/share'
@@ -27,7 +27,6 @@ export default ({ data }) => {
     height: 3,
   }))
 
-  console.log(photos)
   return (
     <Layout>
       <Box basis="large">
