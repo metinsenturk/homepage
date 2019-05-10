@@ -5,7 +5,7 @@ import { Box, Heading, Text, Markdown, Anchor } from 'grommet'
 export default class Profie extends React.Component {
     render() {
         return (
-            <Box border={{ color: "brand", size: "small" }}>
+            <Box>
                 <Box direction="row-responsive">
                     <Box
                         width="xsmall"

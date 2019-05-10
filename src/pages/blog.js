@@ -20,12 +20,12 @@ class Blog extends Component {
 
     return (
       <Layout>
-        <Box align="center" margin="medium" gap="medium">
+        <Box align="center" gap="medium" /*pad={{ horizontal: "xxsmall" }}*/>
         
         {posts.map(({ node }, index) => (
           <Box as="article" key={index} width="large" elevation="small">
             {node.frontmatter.cover !== null ? (
-              <Box height="small" margin={{ horizontal: "small" }} border={ { side: "bottom", color: "gray" } }>
+              <Box height="small" margin={{ horizontal: "xxsmall" }} border={ { side: "bottom", color: "gray" } }>
                 <Img fluid={node.frontmatter.cover.childImageSharp.fluid} />
               </Box>
             ) : (

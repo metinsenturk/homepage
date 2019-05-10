@@ -6,9 +6,9 @@ import Profile from '../components/profile/profile'
 const IndexPage = () => {
   return (
     <Layout>
-      <Box fill={false}>
-      <Heading level="3">Hi there.</Heading>
-      <Profile />
+      <Box>
+        <Heading level="3">Hi there.</Heading>
+        <Profile />
       </Box>
     </Layout>
   )

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Box, Heading, Anchor, ResponsiveContext, Menu, Text, Button, Layer } from 'grommet'
+import { Box, Heading, Anchor, ResponsiveContext, Text, Button, Layer } from 'grommet'
 import { Actions, Action, Apps } from 'grommet-icons';
 
 const ITEMS = [
