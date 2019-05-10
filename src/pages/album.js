@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { graphql, Link } from 'gatsby'
-import Img from 'gatsby-image'
 import { Box, Anchor, Heading, Text } from 'grommet'
 import Layout from '../components/layout/layout'
-
+import PhotoGrid from '../components/photo-grid/photo-grid'
 // TODO: check this library again.
 // eslint-disable-next-line
 import ReactPhotoGrid from 'react-photo-grid'
@@ -19,18 +18,16 @@ export default class Album extends Component {
           {albums.map((album, index) => {
             const album_images = images.filter(image => album.node.slug.replace(/[/]/g, '') === image.node.relativeDirectory
             )
-
             return (
               <Box key={index} elevation="small">
-                <Box direction="row" overflow="hidden">
-                  {album_images.map(({ node }, index) => {
-                    return <Box><Img fixed={node.childImageSharp.fixed}></Img></Box>
-                  })}
-                </Box>
+                <PhotoGrid imagesList={album_images} />
                 <Box pad="medium">
-                  <Anchor as={Link} to={`album${album.node.slug}`}>
-                    <Heading level="4" margin={{ vertical: "small" }}>{album.node.title}</Heading>
-                  </Anchor>
+                  <Box direction="row" justify="between" align="center">
+                    <Anchor as={Link} to={`album${album.node.slug}`}>
+                      <Heading level="4" margin={{ vertical: "small" }}>{album.node.title}</Heading>
+                    </Anchor>
+                    <Text>{album.node.created}</Text>
+                  </Box>
                   <Text>{album.node.description}</Text>
                 </Box>
               </Box>
@@ -50,6 +47,7 @@ export const query = graphql`
           title
           description
           slug
+          created
         }
       }
     }
@@ -64,8 +62,8 @@ export const query = graphql`
           relativePath
           relativeDirectory
           childImageSharp {
-            fixed(height: 100) {
-              ...GatsbyImageSharpFixed
+            fluid(maxWidth: 1000) {
+              ...GatsbyImageSharpFluid
             }
           }
         }

@@ -34,7 +34,7 @@ class Blog extends Component {
             <Box pad="medium">
               <Box direction="row" justify="between" align="center">
                 <Anchor as={CardLink} to={`blog${node.fields.slug}`}>
-                  <Heading level="5">{node.frontmatter.title}</Heading>
+                  <Heading level="5" margin={{vertical:"xsmall"}}>{node.frontmatter.title}</Heading>
                 </Anchor>
                 <Text as="span">{node.frontmatter.date}</Text>
               </Box>
