@@ -1,45 +1,46 @@
 import React, { Component } from 'react'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
-
+import { Box, Anchor, Heading, Text } from 'grommet'
 import Layout from '../components/layout/layout'
 
-class Album extends Component {
+// TODO: check this library again.
+// eslint-disable-next-line
+import ReactPhotoGrid from 'react-photo-grid'
+
+export default class Album extends Component {
   render() {
     const albums = this.props.data.albums.edges
     const images = this.props.data.images.edges
 
     return (
       <Layout>
-        {albums.map(({ node }, index) => {
-          const album = node
-          const album_images = images.filter(
-            ({ node }) =>
-              album.slug.replace(/[/]/g, '') === node.relativeDirectory
-          )
+        <Box gap="medium" wrap={false} fill={true}>
+          {albums.map((album, index) => {
+            const album_images = images.filter(image => album.node.slug.replace(/[/]/g, '') === image.node.relativeDirectory
+            )
 
-          return (
-            <div key={index}>
-              <Link to={`album${album.slug}`}>
-                <h3>{album.title}</h3>
-              </Link>
-              <p>{album.description}</p>
-              <ul style={{listStyle: "none"}}>
-                {album_images.map(({ node }, index) => {
-                  const image = node
-                  return <li style={{display: "inline", padding: "5px"}}><Img key={index} fixed={image.childImageSharp.fixed} /></li>
-                })}
-
-              </ul>
-            </div>
-          )
-        })}
+            return (
+              <Box key={index} elevation="small">
+                <Box direction="row" overflow="hidden">
+                  {album_images.map(({ node }, index) => {
+                    return <Box><Img fixed={node.childImageSharp.fixed}></Img></Box>
+                  })}
+                </Box>
+                <Box pad="medium">
+                  <Anchor as={Link} to={`album${album.node.slug}`}>
+                    <Heading level="4" margin={{ vertical: "small" }}>{album.node.title}</Heading>
+                  </Anchor>
+                  <Text>{album.node.description}</Text>
+                </Box>
+              </Box>
+            )
+          })}
+        </Box>
       </Layout>
     )
   }
 }
-
-export default Album
 
 export const query = graphql`
   query {
@@ -63,7 +64,7 @@ export const query = graphql`
           relativePath
           relativeDirectory
           childImageSharp {
-            fixed(height: 50) {
+            fixed(height: 100) {
               ...GatsbyImageSharpFixed
             }
           }

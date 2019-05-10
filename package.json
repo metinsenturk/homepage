@@ -21,6 +21,7 @@
     "react-helmet": "^5.2.0",
     "react-icons": "^3.2.2",
     "react-photo-gallery": "^6.2.2",
+    "react-photo-grid": "^1.4.4",
     "styled-components": "^4.2.0"
   },
   "keywords": [
