@@ -2,9 +2,12 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import Gallery from 'react-photo-gallery'
+import { Box, Markdown, Heading, Text, Anchor } from "grommet"
+import { Previous } from "grommet-icons"
+import Layout from '../components/layout/layout'
+import ShareVia from '../components/share/share'
 
 export default ({ data }) => {
-  console.log(data)
   const {
     id,
     title,
@@ -26,18 +29,26 @@ export default ({ data }) => {
 
   console.log(photos)
   return (
-    <div>
-      <div>
-        <Link to={'album/'}>Back</Link>
-        <h1>{title}</h1>
-        <h3>{created}</h3>
-        <h5>{author}</h5>
-        <p>{description}</p>
-        <div style={{ alignItems: "center" }}>
-        <Gallery photos={photos} direction="column" />
-        </div>
-      </div>
-    </div>
+    <Layout>
+      <Box basis="large">
+        <Box pad="xsmall" justify="between" align="end" direction="row">
+          <ShareVia />
+          <Anchor as={Link} to='album/'>
+            <Box direction="row" gap="xsmall">
+              <Previous />
+              <Text>Back</Text>
+            </Box>
+          </Anchor>
+        </Box>
+        <Box as="article" elevation="xsmall" pad={{ horizontal: "medium", vertical: "xsmall" }}>
+          <Heading>{title}</Heading>
+          <Text>{created}</Text>
+          <Text>{author}</Text>
+          <Text>{description}</Text>
+          <Gallery photos={photos} direction="column" />
+        </Box>
+      </Box>
+    </Layout>    
   )
 }
 
