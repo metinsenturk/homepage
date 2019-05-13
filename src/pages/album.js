@@ -20,20 +20,18 @@ export default class Album extends Component {
             const album_images = images.filter(image => album.node.slug.replace(/[/]/g, '') === image.node.relativeDirectory
             )
             return (
-              <Box key={index} elevation="small">
-                <PhotoGrid imagesList={album_images} />
-                <Box pad="medium">
-                  <Box direction="row" justify="between" align="center">
-                  <CardLink to={`/album${album.node.slug}`}>
-                    
+              <CardLink key={index} to={`/album${album.node.slug}`}>
+                <Box elevation="small">
+                  <PhotoGrid imagesList={album_images} />
+                  <Box pad="medium">
+                    <Box direction="row" justify="between" align="center">
                       <Heading level="4" margin={{ vertical: "small" }}>{album.node.title}</Heading>
-                    
-                    </CardLink>
-                    <Text>{album.node.created}</Text>
+                      <Text>{album.node.created}</Text>
+                    </Box>
+                    <Text>{album.node.description}</Text>
                   </Box>
-                  <Text>{album.node.description}</Text>
                 </Box>
-              </Box>
+              </CardLink>
             )
           })}
         </Box>

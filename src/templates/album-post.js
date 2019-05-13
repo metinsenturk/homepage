@@ -31,7 +31,7 @@ export default ({ data }) => {
   return (
     <Layout>
       <Box basis="large">
-        <Box pad="xsmall" justify="between" align="end" direction="row">
+        <Box pad="xsmall" justify="between" align="center" direction="row">
           <ShareVia />
           <InternalLink to='/album/'>
             <Anchor as="span" icon={<Previous />} label="Back" />

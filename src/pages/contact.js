@@ -60,6 +60,8 @@ class Contact extends Component {
 
     render() {
         const failure = () => {
+            var { status, error } = this.state
+            const CONTENT = `\`\`\`js\n${JSON.stringify({ status, error }, null, 2)}\`\`\``
             return (
                 <Box basis="large" fill={true}>
                     <Box pad="xsmall" justify="between" align="end" direction="row">
@@ -73,6 +75,9 @@ class Contact extends Component {
                         <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </Text>
+                    <Markdown options={{ forceBlock: true }}>
+                            {CONTENT}
+                        </Markdown>
                     </Box>
                 </Box>
             )

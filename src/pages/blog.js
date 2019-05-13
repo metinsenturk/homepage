@@ -16,23 +16,22 @@ class Blog extends Component {
 
           {posts.map(({ node }, index) => (
             <Box as="article" key={index} width="large" elevation="small">
-              {node.frontmatter.cover !== null ? (
-                <Box height="small" margin={{ horizontal: "xxsmall" }} border={{ side: "bottom", color: "gray" }}>
-                  <Img fluid={node.frontmatter.cover.childImageSharp.fluid} />
-                </Box>
-              ) : (
-                  <></>
-                )}
-              <Box pad="medium">
-                <Box direction="row" justify="between" align="center">
-                  <CardLink to={`/blog${node.fields.slug}`}>
+              <CardLink to={`/blog${node.fields.slug}`}>
+                {node.frontmatter.cover !== null ? (
+                  <Box height="small" margin={{ horizontal: "xxsmall" }} border={{ side: "bottom", color: "gray" }}>
+                    <Img fluid={node.frontmatter.cover.childImageSharp.fluid} />
+                  </Box>
+                ) : (
+                    <></>
+                  )}
+                <Box pad="medium">
+                  <Box direction="row" justify="between" align="center">
                     <Heading level="5" margin={{ vertical: "xsmall" }}>{node.frontmatter.title}</Heading>
-                  </CardLink>
-                  <Text as="span">{node.frontmatter.date}</Text>
+                    <Text as="span">{node.frontmatter.date}</Text>
+                  </Box>
+                  <Text>{node.frontmatter.description}</Text>
                 </Box>
-                <Text>{node.frontmatter.description}</Text>
-
-              </Box>
+              </CardLink>
             </Box>
           ))}
         </Box>
