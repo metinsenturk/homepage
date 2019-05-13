@@ -79,7 +79,7 @@ class Layout extends React.Component {
                         align="start"
                         alignSelf="center"
                         justify="center"
-                        background="light-2"
+                        //background="light-2"
                         >
                         {this.props.children}
                       </Box>
@@ -93,6 +93,7 @@ class Layout extends React.Component {
                         align="start"
                         alignSelf="center"
                         justify="center"
+                        //background="light-2"
                         >
                         <Box as="main" basis="large" direction="row">
                           {this.props.children}
