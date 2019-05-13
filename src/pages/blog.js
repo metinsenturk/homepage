@@ -1,18 +1,10 @@
 import React, { Component } from 'react'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import styled from 'styled-components';
-import { Heading, Box, Anchor, Text } from 'grommet'
+import { Heading, Box, Text } from 'grommet'
 import Layout from '../components/layout/layout'
+import { CardLink } from '../components/internal/internal'
 
-const CardLink = styled(Link)`
-      text-decoration: none;
-      color: inherit;
-      :hover {
-        opacity: 0.3;
-        text-decoration: none;
-      }
-`;
 
 class Blog extends Component {
   render() {
@@ -21,28 +13,28 @@ class Blog extends Component {
     return (
       <Layout>
         <Box align="center" gap="medium" /*pad={{ horizontal: "xxsmall" }}*/>
-        
-        {posts.map(({ node }, index) => (
-          <Box as="article" key={index} width="large" elevation="small">
-            {node.frontmatter.cover !== null ? (
-              <Box height="small" margin={{ horizontal: "xxsmall" }} border={ { side: "bottom", color: "gray" } }>
-                <Img fluid={node.frontmatter.cover.childImageSharp.fluid} />
-              </Box>
-            ) : (
-                <></>
-              )}
-            <Box pad="medium">
-              <Box direction="row" justify="between" align="center">
-                <Anchor as={CardLink} to={`blog${node.fields.slug}`}>
-                  <Heading level="5" margin={{vertical:"xsmall"}}>{node.frontmatter.title}</Heading>
-                </Anchor>
-                <Text as="span">{node.frontmatter.date}</Text>
-              </Box>
-              <Text>{node.frontmatter.description}</Text>
 
+          {posts.map(({ node }, index) => (
+            <Box as="article" key={index} width="large" elevation="small">
+              {node.frontmatter.cover !== null ? (
+                <Box height="small" margin={{ horizontal: "xxsmall" }} border={{ side: "bottom", color: "gray" }}>
+                  <Img fluid={node.frontmatter.cover.childImageSharp.fluid} />
+                </Box>
+              ) : (
+                  <></>
+                )}
+              <Box pad="medium">
+                <Box direction="row" justify="between" align="center">
+                  <CardLink to={`/blog${node.fields.slug}`}>
+                    <Heading level="5" margin={{ vertical: "xsmall" }}>{node.frontmatter.title}</Heading>
+                  </CardLink>
+                  <Text as="span">{node.frontmatter.date}</Text>
+                </Box>
+                <Text>{node.frontmatter.description}</Text>
+
+              </Box>
             </Box>
-          </Box>
-        ))}
+          ))}
         </Box>
       </Layout>
     )

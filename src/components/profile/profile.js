@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import { Box, Heading, Text, Markdown, Anchor } from 'grommet'
+import { InternalLink } from '../internal/internal'
 
 export default class Profie extends React.Component {
     render() {
@@ -11,7 +11,7 @@ export default class Profie extends React.Component {
                         width="xsmall"
                         height="xsmall"
                         overflow="hidden"
-                        margin={{ bottom: 'small', left: 'none', right: 'small' }}                        
+                        margin={{ bottom: 'small', left: 'none', right: 'small' }}
                     >
                         <img
                             title={this.props.profile.title}
@@ -27,7 +27,8 @@ export default class Profie extends React.Component {
                 <Box>
                     <Heading level="4" margin="0">About Me</Heading>
                     <Markdown>{this.props.profile.bio}</Markdown>
-                    <Text>Read more about <Anchor to="/about" as={Link}>me.</Anchor></Text>
+                    <Text>Read more about <InternalLink to="/about/"><Anchor as="span">me.</Anchor></InternalLink>
+                    </Text>
                 </Box>
             </Box>
         )

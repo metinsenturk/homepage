@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { graphql, Link } from 'gatsby'
-import { Box, Anchor, Heading, Text } from 'grommet'
+import { graphql } from 'gatsby'
+import { Box, Heading, Text } from 'grommet'
 import Layout from '../components/layout/layout'
 import PhotoGrid from '../components/photo-grid/photo-grid'
+import { CardLink } from '../components/internal/internal'
 // TODO: check this library again.
 // eslint-disable-next-line
 import ReactPhotoGrid from 'react-photo-grid'
@@ -23,9 +24,11 @@ export default class Album extends Component {
                 <PhotoGrid imagesList={album_images} />
                 <Box pad="medium">
                   <Box direction="row" justify="between" align="center">
-                    <Anchor as={Link} to={`album${album.node.slug}`}>
+                  <CardLink to={`/album${album.node.slug}`}>
+                    
                       <Heading level="4" margin={{ vertical: "small" }}>{album.node.title}</Heading>
-                    </Anchor>
+                    
+                    </CardLink>
                     <Text>{album.node.created}</Text>
                   </Box>
                   <Text>{album.node.description}</Text>

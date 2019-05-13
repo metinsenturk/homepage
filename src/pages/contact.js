@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Link } from 'gatsby'
 import { FormField, TextInput, TextArea, Button, Markdown, Anchor } from 'grommet'
 import { Box, Select, Heading, Text, Form, } from 'grommet'
 import { Previous } from "grommet-icons"
 import Layout from '../components/layout/layout'
+import { InternalLink } from '../components/internal/internal'
 
 const encode = (data) => {
     return Object.keys(data)
@@ -47,7 +47,7 @@ class Contact extends Component {
     }
 
     onSubmit = (event) => {
-        console.log(event)
+        //console.log(event)
         event.preventDefault();
         fetch("/", {
             method: "POST",
@@ -64,12 +64,9 @@ class Contact extends Component {
                 <Box basis="large" fill={true}>
                     <Box pad="xsmall" justify="between" align="end" direction="row">
                         <Text color="status-error" >Failure!</Text>
-                        <Anchor as={Link} to='contact/'>
-                            <Box direction="row" gap="xsmall">
-                                <Previous />
-                                <Text>Back</Text>
-                            </Box>
-                        </Anchor>
+                        <InternalLink to='/'>
+                            <Anchor as="span" icon={<Previous />} label="Home" />
+                        </InternalLink>
                     </Box>
                     <Box elevation="small" pad="medium" gap="medium">
                         <Heading>Something went wrong.</Heading>
@@ -84,17 +81,14 @@ class Contact extends Component {
         const success = () => {
             var { status, name, select, email, message } = this.state
             const CONTENT = `\`\`\`js\n${JSON.stringify({ status, name, select, email, message }, null, 2)}\`\`\``
-            
+
             return (
                 <Box basis="large" fill={true}>
                     <Box pad="xsmall" justify="between" align="end" direction="row">
                         <Text color="status-ok" >Success!</Text>
-                        <Anchor as={Link} to='contact/'>
-                            <Box direction="row" gap="xsmall">
-                                <Previous />
-                                <Text>Back</Text>
-                            </Box>
-                        </Anchor>
+                        <InternalLink to='/'>
+                            <Anchor as="span" icon={<Previous />} label="Home" />
+                        </InternalLink>
                     </Box>
                     <Box elevation="small" pad="medium" gap="medium" >
                         <Heading >Message received!</Heading>
@@ -122,10 +116,10 @@ class Contact extends Component {
                     <Form name="contactForm" method="post" onSubmit={this.onSubmit} data-netlify="true" data-netlify-honeypot="bot-field">
                         {/* You still need to add the hidden input with the form name to your JSX form */}
                         <input type="hidden" name="form-name" value="contact" />
-                        <FormField name="name" label="Full Name" component={TextInput} placeholder="John Applessed" required={true} onChange={this.onNameChange}/> 
-                        <FormField name="email" label="Email" component={TextInput} placeholder="john@apple.com" required={true} validate={{ regexp: emailRegex, message: "please provide an email." }} onChange={this.onEmailChange}/>
+                        <FormField name="name" label="Full Name" component={TextInput} placeholder="John Applessed" required={true} onChange={this.onNameChange} />
+                        <FormField name="email" label="Email" component={TextInput} placeholder="john@apple.com" required={true} validate={{ regexp: emailRegex, message: "please provide an email." }} onChange={this.onEmailChange} />
                         <FormField name="reason" label="Why?" component={Select} value={this.state.select} options={selectOptions} onChange={this.onSelectChange} />
-                        <FormField name="message" label="Message" component={TextArea} placeholder="type here" rows="5" required={true} onChange={this.onMessageChange}/>
+                        <FormField name="message" label="Message" component={TextArea} placeholder="type here" rows="5" required={true} onChange={this.onMessageChange} />
                         <Box pad={{ vertical: 'medium' }} direction="row" justify="end">
                             <Button label="Send" type="submit" primary={true}></Button>
                         </Box>

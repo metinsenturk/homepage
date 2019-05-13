@@ -7,7 +7,7 @@ import Layout from '../components/layout/layout'
 
 export default ({ data }) => {
     const about = data.about.edges[0].node
-    console.log(about)
+    //console.log(about)
 
     const overrides = {
         img: { component: Image, props: { fit: "cover" } },

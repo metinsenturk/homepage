@@ -1,9 +1,10 @@
 import React from 'react'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import { Box, Markdown, Heading, Text, Anchor } from "grommet"
 import { Previous } from "grommet-icons"
 import Layout from '../components/layout/layout'
 import ShareVia from '../components/share/share'
+import { InternalLink } from '../components/internal/internal'
 
 export default ({ data }) => {
   const { markdownRemark } = data
@@ -14,12 +15,10 @@ export default ({ data }) => {
       <Box basis="large">
         <Box pad="xsmall" justify="between" align="end" direction="row">
           <ShareVia />
-          <Anchor as={Link} to='blog/'>
-            <Box direction="row" gap="xsmall">
-              <Previous />
-              <Text>Back</Text>
-            </Box>
-          </Anchor>
+          <InternalLink to='/blog/'>
+            <Anchor as="span" icon={<Previous />} label="Back" />
+          </InternalLink>
+
         </Box>
         <Box as="article" elevation="xsmall" pad={{ horizontal: "medium", vertical: "xsmall" }}>
           <Heading>{frontmatter.title}</Heading>
