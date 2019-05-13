@@ -62,7 +62,7 @@ class Header2 extends React.Component {
       <Box
         as="header"
         direction="row"
-        background="brand"
+        background="neutral-3"
         gap="medium"
         align="center"
         justify="around"
