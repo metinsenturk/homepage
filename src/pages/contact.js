@@ -47,6 +47,7 @@ class Contact extends Component {
     }
 
     onSubmit = (event) => {
+        console.log(event)
         event.preventDefault();
         fetch("/", {
             method: "POST",
@@ -82,11 +83,8 @@ class Contact extends Component {
 
         const success = () => {
             var { status, name, select, email, message } = this.state
-            const CONTENT = `
-            \`\`\`json             
-            ${JSON.stringify({ status, name, select, email, message }, null, 4)}
-            \`\`\`
-            `
+            const CONTENT = `\`\`\`js\n${JSON.stringify({ status, name, select, email, message }, null, 2)}\`\`\``
+            
             return (
                 <Box basis="large" fill={true}>
                     <Box pad="xsmall" justify="between" align="end" direction="row">
@@ -99,11 +97,11 @@ class Contact extends Component {
                         </Anchor>
                     </Box>
                     <Box elevation="small" pad="medium" gap="medium" >
-                        <Heading >Message recieved!</Heading>
+                        <Heading >Message received!</Heading>
                         <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </Text>
-                        <Markdown>
+                        <Markdown options={{ forceBlock: true }}>
                             {CONTENT}
                         </Markdown>
                     </Box>
@@ -113,7 +111,7 @@ class Contact extends Component {
 
         const ready = () => {
             // eslint-disable-next-line
-            const emailRegex = `/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/`
+            const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             const selectOptions = ['Hire', 'Discussion', 'Thanks', 'Complaint', 'No Reason']
             return (
                 <Box elevation="small" pad="medium" gap="medium" fill={true}>
@@ -121,24 +119,15 @@ class Contact extends Component {
                     <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </Text>
-                    <Form name="contactForm" method="post" data-netlify="true" data-netlify-honeypot="bot-field">
+                    <Form name="contactForm" method="post" onSubmit={this.onSubmit} data-netlify="true" data-netlify-honeypot="bot-field">
                         {/* You still need to add the hidden input with the form name to your JSX form */}
                         <input type="hidden" name="form-name" value="contact" />
-                        <FormField label="Full Name" required={true}>
-                            <TextInput placeholder="John Applessed" onChange={this.onNameChange} />
-                        </FormField>
-                        {/** TODO: required and validate does not work. */}
-                        <FormField label="Email" required={true} validate={{ regexp: emailRegex, message: "e-mail required.." }}>
-                            <TextInput placeholder="john@apple.com" onChange={this.onEmailChange}/>
-                        </FormField>
-                        <FormField label="Why?">
-                            <Select options={selectOptions} value={this.state.select} onChange={this.onSelectChange} />
-                        </FormField>
-                        <FormField label="Message" required={true}>
-                            <TextArea placeholder="type here" rows="5" onChange={this.onMessageChange} />
-                        </FormField>
+                        <FormField name="name" label="Full Name" component={TextInput} placeholder="John Applessed" required={true} onChange={this.onNameChange}/> 
+                        <FormField name="email" label="Email" component={TextInput} placeholder="john@apple.com" required={true} validate={{ regexp: emailRegex, message: "please provide an email." }} onChange={this.onEmailChange}/>
+                        <FormField name="reason" label="Why?" component={Select} value={this.state.select} options={selectOptions} onChange={this.onSelectChange} />
+                        <FormField name="message" label="Message" component={TextArea} placeholder="type here" rows="5" required={true} onChange={this.onMessageChange}/>
                         <Box pad={{ vertical: 'medium' }} direction="row" justify="end">
-                            <Button label="Send" primary={true} onClick={this.onSubmit}></Button>
+                            <Button label="Send" type="submit" primary={true}></Button>
                         </Box>
                     </Form>
                 </Box>
