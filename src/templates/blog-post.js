@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Box, Markdown, Heading, Text, Anchor, Paragraph } from "grommet"
+import { Box, Markdown, Heading, Text, Anchor } from "grommet"
 import { Previous } from "grommet-icons"
 import Layout from '../components/layout/layout'
 import ShareVia from '../components/share/share'
@@ -14,7 +14,7 @@ export default ({ data }) => {
 
   const overrides = {
     p: {
-      component: Paragraph,
+      component: Text,
       props: { size: "medium", basis: "large" }
     },
     pre: {

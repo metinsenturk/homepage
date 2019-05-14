@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import { Heading, Box, Text, Markdown, Paragraph } from 'grommet'
+import { Heading, Box, Text, Markdown } from 'grommet'
 import { Image } from 'grommet'
 import Layout from '../components/layout/layout'
 import SEO from '../components/seo/seo';
@@ -13,21 +13,21 @@ export default ({ data }) => {
   const overrides = {
     img: { component: Image, props: { fit: "cover" } },
     pre: { props: { size: "large" } },
-    p: { component: Paragraph, props: { size: "large" } }
+    p: { component: Text, props: { size: "medium" } }
   }
 
   return (
     <Layout>
       <SEO
         pathname="/about/"
-        title="About myself, written by myself."
+        title="About myself."
         desc=""
       />
       <Box basis="large">
-        <Box>
+        <Box pad={{ horizontal: "xsmall" }}>
           <Img fluid={about.frontmatter.cover.childImageSharp.fluid} />
         </Box>
-        <Box gap="medium" elevation="xsmall" pad={{ horizontal: "medium", vertical: "xsmall" }}>
+        <Box as="article" gap="medium" elevation="xsmall" pad={{ horizontal: "medium", vertical: "xsmall" }}>
           <Heading> {about.frontmatter.title}</Heading>
           <Text>{about.frontmatter.description}</Text>
           <Markdown components={overrides}>

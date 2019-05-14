@@ -1,6 +1,7 @@
 import React from 'react'
-import { Box, Heading, Text, Markdown, Anchor } from 'grommet'
+import { Box, Heading, Text, Markdown, Anchor, Image } from 'grommet'
 import { InternalLink } from '../internal/internal'
+import profilePic from '../../assets/me.jpg'
 
 export default class Profie extends React.Component {
     render() {
@@ -8,15 +9,17 @@ export default class Profie extends React.Component {
             <Box>
                 <Box direction="row-responsive">
                     <Box
-                        width="xsmall"
-                        height="xsmall"
-                        overflow="hidden"
-                        margin={{ bottom: 'small', left: 'none', right: 'small' }}
+                        width="small"
+                        height="small"
+                        overflow="hidden"    
+                        //elevation="xsmall"          
+                        margin={{ bottom: 'small', top: 'none', left: 'none', right: 'small' }}
                     >
-                        <img
+                        <Image
                             title={this.props.profile.title}
                             alt={this.props.profile.alt}
-                            src={this.props.profile.src}
+                            src={this.props.profile.src ?  this.props.profile.src : profilePic}
+                            //fit="contain"
                         />
                     </Box>
                     <Box>

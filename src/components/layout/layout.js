@@ -33,37 +33,23 @@ const theme = {
 
 class Layout extends React.Component {
   constructor(props) {
-    super();
-    this.onThemeChange = this.onThemeChange.bind(this);
+    super(props);
     this.state = { theme: true };
   }
 
-  onThemeChange() {
+  onThemeChange = () => {
     this.setState(prevState => ({ theme: !prevState.theme }))
   }
 
   render() {
     return (
       <StaticQuery
-        query={graphql`
-          query SiteTitleQuery {
-            site {
-              siteMetadata {
-                title
-              }
-            }
-          }
-        `}
-        render={data => (
+        query={query}
+        render={(data) => (
           <>
             <Helmet
               title={data.site.siteMetadata.title}
-              htmlAttributes={{ lang: data.site.siteMetadata.lang }}
-              meta={[
-                { name: 'description', content: data.site.siteMetadata.description },
-                { name: 'keywords', content: data.site.siteMetadata.keywords },
-              ]}
-
+              htmlAttributes={{ lang: data.site.siteMetadata.siteLanguage }}            
             />
             <Grommet theme={this.state.theme ? GrommetThemes.grommet : GrommetThemes.dark} full={true}>
               <GlobalSyle />
@@ -79,8 +65,8 @@ class Layout extends React.Component {
                         align="start"
                         alignSelf="center"
                         justify="center"
-                        //background="light-2"
-                        >
+                      //background="light-2"
+                      >
                         {this.props.children}
                       </Box>
                     )
@@ -93,8 +79,8 @@ class Layout extends React.Component {
                         align="start"
                         alignSelf="center"
                         justify="center"
-                        //background="light-2"
-                        >
+                      //background="light-2"
+                      >
                         <Box as="main" basis="large" direction="row">
                           {this.props.children}
                         </Box>
@@ -113,9 +99,24 @@ class Layout extends React.Component {
   }
 }
 
+export default Layout
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default Layout
+const query = graphql`
+query SiteTitleQuery {
+  site {
+    siteMetadata {
+      title
+      siteLanguage
+      metaDefault {
+        title
+        description
+        banner
+      }
+    }
+  }
+}
+`
