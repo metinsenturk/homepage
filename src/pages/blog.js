@@ -3,16 +3,23 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { Heading, Box, Text } from 'grommet'
 import Layout from '../components/layout/layout'
+import SEO from '../components/seo/seo';
 import { CardLink } from '../components/internal/internal'
-
 
 class Blog extends Component {
   render() {
-    let posts = this.props.data.posts.edges
+    console.log(this.props.data)
+    let meta = this.props.data.site.siteMetadata.metaBlog
+    let posts = this.props.data.allMarkdownRemark.edges
 
     return (
       <Layout>
-        <Box align="center" gap="medium" /*pad={{ horizontal: "xxsmall" }}*/>
+        <SEO
+          pathname="/blog/"
+          title={meta.title}
+          desc={meta.description}
+        />
+        <Box align="center" gap="medium">
 
           {posts.map(({ node }, index) => (
             <Box as="article" key={index} width="large" elevation="small">
@@ -44,27 +51,35 @@ export default Blog
 
 export const query = graphql`
 query {
-    posts: allMarkdownRemark {
-      edges {
-        node {
-          frontmatter {
-            title
-            description
-            date
-            cover {
-              childImageSharp {
-                fluid(maxWidth: 400, maxHeight: 250) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-          fields {
-            slug
-          }
-        }
-        
+  site {
+    siteMetadata {
+      metaBlog {
+        title
+        description
+        banner
       }
     }
   }
+  allMarkdownRemark(filter: {fields: {slug: {ne: "/about-me/"}}}) {
+    edges {
+      node {
+        frontmatter {
+          title
+          description
+          date
+          cover {
+            childImageSharp {
+              fluid(maxWidth: 400, maxHeight: 250) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+        fields {
+          slug
+        }
+      }
+    }
+  }
+}
 `

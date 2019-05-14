@@ -1,13 +1,47 @@
 module.exports = {
   siteMetadata: {
-    title: 'MS',
-    socialConfig: {
-      facebook: "https://facebook.com/mtnSntrk",
-      twitter: "https://twitter.com/machinmetosh",
-      linkedin: "https://linkedin.com/in/metinsenturk",
+    // basic
+    pathPrefix: '/',
+    siteUrl: 'http://localhost:8000', 
+    siteLanguage: 'en',
+    author: 'Metin Senturk',
+    title: "MS",
+    metaDefault: {
+      title: 'MS',
+      description: '',
+      banner: 'gatsby-icon.png',
+    },
+    metaBlog: {
+      title: 'My Blog',
+      description: '',
+      banner: 'gatsby-icon.png',
+    },
+    metaAlbum: {
+      title: 'Albums',
+      description: '',
+      banner: 'gatsby-icon.png',
+    },
+    // jsonld
+    titleAlt: '',
+    headline: '',
+    favicon: '', 
+    shortName: '', // shortname for manifest. MUST be shorter than 12 characters
+    author: 'Metin Senturk', // Author for schemaORGJSONLD
+    themeColor: '#3D63AE',
+    backgroundColor: '#EBEDF2',
+    
+    // fb
+    ogLanguage: 'en_US',
+    
+    // other
+    social: {
+      facebook: "mtnSntrk",
+      twitter: "@machinmetosh",
+      linkedin: "metinsenturk",
       telegram: "@metinsenturk",
       email: "metinsenturk@me.com",
-    }
+    },
+    googleAnalyticsId: ''
   },
   plugins: [
     'gatsby-plugin-react-helmet',
