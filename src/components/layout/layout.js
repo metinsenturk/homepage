@@ -34,7 +34,7 @@ const theme = {
 class Layout extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { theme: true };
+    this.state = { theme: this.props.theme };
   }
 
   onThemeChange = () => {
@@ -99,10 +99,16 @@ class Layout extends React.Component {
   }
 }
 
+export {GrommetThemes}
 export default Layout
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  theme: PropTypes.bool
+}
+
+Layout.defaultProps = {
+  theme: true
 }
 
 const query = graphql`

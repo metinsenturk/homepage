@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { graphql } from 'gatsby'
 import { Box, Heading, Text } from 'grommet'
-import Layout from '../components/layout/layout'
 import SEO from '../components/seo/seo';
 import PhotoGrid from '../components/photo-grid/photo-grid'
 import { CardLink } from '../components/internal/internal'
@@ -16,7 +15,7 @@ export default class Album extends Component {
     const images = this.props.data.images.edges
 
     return (
-      <Layout>
+      <>
        <SEO
           pathname="/album/"
           title={meta.title}
@@ -42,7 +41,7 @@ export default class Album extends Component {
             )
           })}
         </Box>
-      </Layout>
+      </>
     )
   }
 }

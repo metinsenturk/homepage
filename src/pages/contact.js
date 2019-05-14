@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { FormField, TextInput, TextArea, Button, Markdown, Anchor } from 'grommet'
 import { Box, Select, Heading, Text, Form, } from 'grommet'
 import { Previous } from "grommet-icons"
-import Layout from '../components/layout/layout'
 import SEO from '../components/seo/seo';
 import { InternalLink } from '../components/internal/internal'
 
@@ -149,14 +148,14 @@ class Contact extends Component {
         }
 
         return (
-            <Layout>
+            <>
                 <SEO
                     pathname="/contact/"
                     title="Contact with me."
                     desc=""
                 />
                 {currentComponent}
-            </Layout>
+            </>
         )
 
     }

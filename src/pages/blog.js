@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { Heading, Box, Text } from 'grommet'
-import Layout from '../components/layout/layout'
 import SEO from '../components/seo/seo';
 import { CardLink } from '../components/internal/internal'
 
@@ -13,7 +12,7 @@ class Blog extends Component {
     let posts = this.props.data.allMarkdownRemark.edges
 
     return (
-      <Layout>
+      <>
         <SEO
           pathname="/blog/"
           title={meta.title}
@@ -42,7 +41,7 @@ class Blog extends Component {
             </Box>
           ))}
         </Box>
-      </Layout>
+      </>
     )
   }
 }

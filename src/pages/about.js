@@ -3,7 +3,6 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { Heading, Box, Text, Markdown } from 'grommet'
 import { Image } from 'grommet'
-import Layout from '../components/layout/layout'
 import SEO from '../components/seo/seo';
 
 export default ({ data }) => {
@@ -17,7 +16,7 @@ export default ({ data }) => {
   }
 
   return (
-    <Layout>
+    <>
       <SEO
         pathname="/about/"
         title="About myself."
@@ -35,7 +34,7 @@ export default ({ data }) => {
           </Markdown>
         </Box>
       </Box>
-    </Layout>
+    </>
   )
 }
 

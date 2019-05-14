@@ -4,7 +4,6 @@ import { graphql, Link } from 'gatsby'
 import Gallery from 'react-photo-gallery'
 import { Box, Heading, Text, Anchor } from "grommet"
 import { Previous } from "grommet-icons"
-import Layout from '../components/layout/layout'
 import ShareVia from '../components/share/share'
 import { InternalLink } from '../components/internal/internal'
 
@@ -29,7 +28,7 @@ export default ({ data }) => {
   }))
 
   return (
-    <Layout>
+    <>
       <Box basis="large">
         <Box pad="xsmall" justify="between" align="center" direction="row">
           <ShareVia />
@@ -45,7 +44,7 @@ export default ({ data }) => {
           <Gallery photos={photos} direction="column" />
         </Box>
       </Box>
-    </Layout>    
+    </>    
   )
 }
 

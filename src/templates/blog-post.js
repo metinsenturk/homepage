@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Box, Markdown, Heading, Text, Anchor } from "grommet"
 import { Previous } from "grommet-icons"
-import Layout from '../components/layout/layout'
 import ShareVia from '../components/share/share'
 import SEO from '../components/seo/seo';
 import { InternalLink } from '../components/internal/internal'
@@ -23,7 +22,7 @@ export default ({ data }) => {
   }
 
   return (
-    <Layout>
+    <>
       <SEO
         article={true}
         pathname="/blog/"
@@ -51,7 +50,7 @@ export default ({ data }) => {
           </Markdown>
         </Box>
       </Box>
-    </Layout>
+    </>
   )
 }
 
