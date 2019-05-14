@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { graphql } from 'gatsby'
 import { Box, Heading, Text } from 'grommet'
 import Layout from '../components/layout/layout'
+import SEO from '../components/seo/seo';
 import PhotoGrid from '../components/photo-grid/photo-grid'
 import { CardLink } from '../components/internal/internal'
 // TODO: check this library again.
@@ -10,11 +11,17 @@ import ReactPhotoGrid from 'react-photo-grid'
 
 export default class Album extends Component {
   render() {
+    const meta = this.props.data.site.siteMetadata.metaAlbum
     const albums = this.props.data.albums.edges
     const images = this.props.data.images.edges
 
     return (
       <Layout>
+       <SEO
+          pathname="/album/"
+          title={meta.title}
+          desc={meta.description}
+        />
         <Box gap="medium" wrap={false} fill={true}>
           {albums.map((album, index) => {
             const album_images = images.filter(image => album.node.slug.replace(/[/]/g, '') === image.node.relativeDirectory
@@ -42,6 +49,15 @@ export default class Album extends Component {
 
 export const query = graphql`
   query {
+    site {
+      siteMetadata {
+        metaAlbum {
+          title
+          description
+          banner
+        }
+      }
+    }
     albums: allAlbumsJson {
       edges {
         node {

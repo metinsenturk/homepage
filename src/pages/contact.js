@@ -3,6 +3,7 @@ import { FormField, TextInput, TextArea, Button, Markdown, Anchor } from 'gromme
 import { Box, Select, Heading, Text, Form, } from 'grommet'
 import { Previous } from "grommet-icons"
 import Layout from '../components/layout/layout'
+import SEO from '../components/seo/seo';
 import { InternalLink } from '../components/internal/internal'
 
 const encode = (data) => {
@@ -75,7 +76,7 @@ class Contact extends Component {
                         <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </Text>
-                    <Markdown options={{ forceBlock: true }}>
+                        <Markdown options={{ forceBlock: true }}>
                             {CONTENT}
                         </Markdown>
                     </Box>
@@ -133,14 +134,31 @@ class Contact extends Component {
             )
         }
 
+        let currentComponent = null
+        
         switch (this.state.status) {
             case "failure":
-                return <Layout>{failure()}</Layout>
+                currentComponent = failure()
+                break;
             case "success":
-                return <Layout>{success()}</Layout>
+                currentComponent = success()
+                break;
             default:
-                return <Layout>{ready()}</Layout>
+                currentComponent = ready()
+                break;
         }
+
+        return (
+            <Layout>
+                <SEO
+                    pathname="/contact/"
+                    title="Contact with me."
+                    desc=""
+                />
+                {currentComponent}
+            </Layout>
+        )
+
     }
 }
 

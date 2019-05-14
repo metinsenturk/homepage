@@ -8,7 +8,7 @@ import SEO from '../components/seo/seo';
 import { InternalLink } from '../components/internal/internal'
 
 export default ({ data }) => {
-  console.log(data)
+  // console.log(data)
   const { frontmatter, html, fields } = data.markdownRemark
   const url = data.site.siteMetadata.siteUrl + '/blog/' + fields.slug.split('/')[1] + '/'
 

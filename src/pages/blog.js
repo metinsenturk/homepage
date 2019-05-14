@@ -8,7 +8,7 @@ import { CardLink } from '../components/internal/internal'
 
 class Blog extends Component {
   render() {
-    console.log(this.props.data)
+    // console.log(this.props.data)
     let meta = this.props.data.site.siteMetadata.metaBlog
     let posts = this.props.data.allMarkdownRemark.edges
 
