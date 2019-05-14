@@ -2,7 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
-import siteIcon from '../../images/gatsby-icon.png'
+import siteIcon from '../../assets/gatsby-icon.png'
 import Twitter from './twitter'
 import Facebook from './facebook'
 
@@ -33,7 +33,7 @@ const SEO = ({ title, desc, banner, pathname, article, node }) => (
           url: `${siteUrl}${pathname || '/'}`,
         }
 
-        console.log(seo)
+        // console.log(seo)
 
         // schema.org in JSONLD format
         // https://developers.google.com/search/docs/guides/intro-structured-data

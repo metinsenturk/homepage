@@ -54,21 +54,21 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/src/assets`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `album`,
-        path: `${__dirname}/src/album`,
+        path: `${__dirname}/content/album`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `blog`,
-        path: `${__dirname}/src/blog`,
+        path: `${__dirname}/content/blog`,
       },
     },
     {
@@ -80,7 +80,7 @@ module.exports = {
         background_color: '#663399',
         theme_color: '#663399',
         display: 'minimal-ui',
-        icon: 'src/images/gatsby-icon.png', 
+        icon: 'src/assets/gatsby-icon.png', 
       },
     },
   ],
