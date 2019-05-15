@@ -3,6 +3,8 @@ import { Box, Heading, Anchor, ResponsiveContext, Text, Button, Layer } from 'gr
 import { Actions, Action, Apps } from 'grommet-icons';
 import { InternalLink } from '../internal/internal'
 
+const HEADERCOLOR = 'neutral-3'
+
 const ITEMS = [
   {
     active: true,
@@ -26,47 +28,76 @@ const ITEMS = [
   },
 ]
 
+const Settings = (props) => {
+
+  return (
+    <ResponsiveContext.Consumer>
+      {size => {
+        if (size !== "xsmall" && size !== "small")
+          return (
+            <Box border={{ side: "left" }} margin={{ left: "medium" }} pad={{ left: "medium" }}>
+              <Button onClick={props.theme.onClick}>
+                <Box>
+                  {props.theme.status ? <Action size="medium" /> : <Actions size="medium" />}
+                </Box>
+              </Button>
+            </Box>
+          )
+        else
+          return (
+            <Box border={{ side: "top" }} margin={{ top: "large" }} pad={{ top: "large" }}>
+              <Button onClick={props.theme.onClick}>
+                <Box>
+                  {props.theme.status ? <Anchor size="large" icon={<Action />} label="Darken" /> : <Anchor size="large" icon={<Actions />} label="Lighthen" />}
+                </Box>
+              </Button>
+            </Box>
+          )
+      }}
+    </ResponsiveContext.Consumer>
+  );
+}
+
 const MobileHeader = (props) => {
   return (
     <Layer position="top" full="vertical" modal={true} plain={true}>
-      <Box background="brand" fill="vertical" align="center" gap="large" pad="large">
+      <Box background={HEADERCOLOR} fill="vertical" align="center" gap="large" pad="large">
         <Box pad={{ horizontal: 'medium', vertical: 'small' }}>
           <Heading size='large'>Menu</Heading>
         </Box>
         {ITEMS.map((item, index) => (
-          <InternalLink key={index} to={item.path} onClick={props.onClick}>
+          <InternalLink key={index} to={item.path} onClick={props.navOnClick}>
             <Anchor as="span">
               <Box pad={{ horizontal: 'medium', vertical: 'large' }}>
                 <Text size='large'>{item.label}</Text>
               </Box>
             </Anchor>
-
           </InternalLink>
-
         ))}
+        <Settings theme={props.theme} />
 
       </Box>
     </Layer>
   )
 }
 
-class Header2 extends React.Component {
+class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.onClick = this.onClick.bind(this);
     this.state = { mobileMenu: false };
   }
 
-  onClick() {
+  mobileOnClick = () => {
     this.setState(prevState => ({ mobileMenu: !prevState.mobileMenu }))
   }
 
   render() {
+    const theme = this.props.theme
     return (
       <Box
         as="header"
         direction="row"
-        background="neutral-3"
+        background={HEADERCOLOR}
         gap="medium"
         align="center"
         justify="around"
@@ -81,36 +112,24 @@ class Header2 extends React.Component {
           {size => {
             if (size !== "xsmall" && size !== "small") {
               return (
-                <Box as="nav" gap="medium" direction="row" align="center">
-                  {ITEMS.map((item, index) => (
-                    <InternalLink key={index} to={item.path}>
-                      <Anchor as="span" label={item.label}>
-                      </Anchor>
-                    </InternalLink>
-
-                  ))}
-
-                  <Button onClick={this.props.theme.onClick}>
-                    <Box>
-                      {this.props.theme.status ? <Action size="medium" /> : <Actions size="medium" />}
-                    </Box>
-                  </Button>
-                </Box>)
+                <Box direction="row">
+                  <Box as="nav" gap="medium" direction="row" align="center">
+                    {ITEMS.map((item, index) => (
+                      <InternalLink key={index} to={item.path}>
+                        <Anchor as="span" label={item.label} />
+                      </InternalLink>
+                    ))}
+                  </Box>
+                  <Settings theme={{ status: theme.status, onClick: theme.onClick }} />
+                </Box>
+              )
             } else {
               return (
                 <Box>
-                  {/*<Menu
-                    label="Menu"
-                    size="large"
-                    dropProps={{ align: { top: "bottom", left: "left" } }}
-                    items={[{ label: "Blog", onClick: () => (alert("sfs")) }]}
-                  />*/}
                   {this.state.mobileMenu ? (
-                    <MobileHeader onClick={this.onClick} />
+                    <MobileHeader navOnClick={this.mobileOnClick} theme={theme} />
                   ) : (
-                      <Button onClick={this.onClick}>
-                        <Apps />
-                      </Button>
+                      <Button onClick={this.mobileOnClick} icon={<Apps />} />
                     )}
                 </Box>)
             }
@@ -121,4 +140,4 @@ class Header2 extends React.Component {
   }
 }
 
-export default Header2
+export default Header
