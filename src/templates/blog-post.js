@@ -8,7 +8,7 @@ import { InternalLink } from '../components/internal/internal'
 
 export default ({ data }) => {
   // console.log(data)
-  const { frontmatter, html, fields } = data.markdownRemark
+  const { frontmatter, rawMarkdownBody, fields } = data.markdownRemark
   const url = data.site.siteMetadata.siteUrl + '/blog/' + fields.slug.split('/')[1] + '/'
 
   const overrides = {
@@ -46,7 +46,7 @@ export default ({ data }) => {
           <Heading>{frontmatter.title}</Heading>
           <Text>{frontmatter.date}</Text>
           <Markdown components={overrides}>
-            {html}
+            {rawMarkdownBody}
           </Markdown>
         </Box>
       </Box>
@@ -63,6 +63,7 @@ export const query = graphql`
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
+      rawMarkdownBody
       wordCount {
         paragraphs
         sentences

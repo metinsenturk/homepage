@@ -1,6 +1,7 @@
 import React from 'react'
 import { Box, Heading, Text, Markdown, Anchor, Image } from 'grommet'
 import { InternalLink } from '../internal/internal'
+import Social from '../social/social'
 import profilePic from '../../assets/me.jpg'
 
 export default class Profie extends React.Component {
@@ -28,6 +29,7 @@ export default class Profie extends React.Component {
 
                 </Box>
                 <Box>
+                    <Social />
                     <Heading level="4" margin="0">About Me</Heading>
                     <Markdown>{this.props.profile.bio}</Markdown>
                     <Text>Read more about <InternalLink to="/about/"><Anchor as="span">me.</Anchor></InternalLink>

@@ -8,7 +8,7 @@ const IndexPage = () => {
     <>
       <SEO />
       <Box gap="medium" fill={true}>
-        <Box elevation="small">
+        <Box elevation="small" overflow="hidden">
           <Carousel play={10000} fill={true}>
             <InternalLink to="/contact/">
               <Stack anchor="bottom-left">
