@@ -5,6 +5,10 @@ module.exports = {
     siteUrl: 'http://localhost:8000', 
     siteLanguage: 'en',
     author: 'Metin Senturk',
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+    sed do eiusmod tempor incididunt ut labore et dolore magna 
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+    ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
     title: "MS",
     metaDefault: {
       title: 'MS',
@@ -40,8 +44,11 @@ module.exports = {
       linkedin: "metinsenturk",
       telegram: "@metinsenturk",
       email: "metinsenturk@me.com",
+      github: "metinsenturk"
     },
-    googleAnalyticsId: ''
+    googleAnalyticsId: '',
+    sourceUrl: ''
+
   },
   plugins: [
     'gatsby-plugin-react-helmet',

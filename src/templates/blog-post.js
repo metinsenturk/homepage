@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Box, Markdown, Heading, Text, Anchor } from "grommet"
+import { Box, Markdown, Heading, Text, Anchor, ResponsiveContext } from "grommet"
 import { Previous } from "grommet-icons"
 import ShareVia from '../components/share/share'
 import SEO from '../components/seo/seo';
@@ -35,14 +35,21 @@ export default ({ data }) => {
           updated: frontmatter.updated
         }} />
       <Box basis="large">
-        <Box pad="xsmall" justify="between" align="center" direction="row">
-          <ShareVia />
-          <InternalLink to='/blog/'>
-            <Anchor as="span" icon={<Previous />} label="Back" />
-          </InternalLink>
-
-        </Box>
-        <Box as="article" elevation="xsmall" pad={{ horizontal: "medium", vertical: "xsmall" }}>
+      <ResponsiveContext.Consumer>
+          {(size) => {
+            let pad = (size === 'small' || size === 'xsmall') ? "medium" : "xsmall"
+            return (
+              <Box pad={pad} justify="between" align="center" direction="row">
+                <ShareVia />
+                <InternalLink to='/blog/'>
+                  <Anchor as="span" icon={<Previous />} label="Back" />
+                </InternalLink>
+              </Box>
+            )
+          }}
+        </ResponsiveContext.Consumer>
+        {/** TODO: temp solution to show footer, article does not fit its contents on mobile. */}
+        <Box as="article" elevation="xsmall" overflow="auto" pad={{ horizontal: "medium", vertical: "xsmall" }}>
           <Heading>{frontmatter.title}</Heading>
           <Text>{frontmatter.date}</Text>
           <Markdown components={overrides}>

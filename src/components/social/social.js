@@ -35,6 +35,7 @@ query {
           linkedin
           telegram
           email
+          github
         }
       }
     }

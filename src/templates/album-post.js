@@ -1,8 +1,8 @@
-/* eslint-disable */ 
+/* eslint-disable */
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import Gallery from 'react-photo-gallery'
-import { Box, Heading, Text, Anchor } from "grommet"
+import { Box, Heading, Text, Anchor, ResponsiveContext } from "grommet"
 import { Previous } from "grommet-icons"
 import ShareVia from '../components/share/share'
 import { InternalLink } from '../components/internal/internal'
@@ -30,13 +30,22 @@ export default ({ data }) => {
   return (
     <>
       <Box basis="large">
-        <Box pad="xsmall" justify="between" align="center" direction="row">
-          <ShareVia />
-          <InternalLink to='/album/'>
-            <Anchor as="span" icon={<Previous />} label="Back" />
-          </InternalLink>
-        </Box>
-        <Box as="article" elevation="xsmall" pad={{ horizontal: "medium", vertical: "xsmall" }}>
+        <ResponsiveContext.Consumer>
+          {(size) => {
+            let pad = (size === 'small' || size === 'xsmall') ? "medium" : "xsmall"
+            return (
+              <Box pad={pad} justify="between" align="center" direction="row">
+                <ShareVia />
+                <InternalLink to='/album/'>
+                  <Anchor as="span" icon={<Previous />} label="Back" />
+                </InternalLink>
+              </Box>
+            )
+          }}
+        </ResponsiveContext.Consumer>
+
+        {/** TODO: temp solution to show footer, article does not fit its contents on mobile. */}
+        <Box as="article" elevation="xsmall" overflow="auto" pad={{ horizontal: "medium", vertical: "xsmall" }}>
           <Heading>{title}</Heading>
           <Text>{created}</Text>
           <Text>{author}</Text>
@@ -44,7 +53,7 @@ export default ({ data }) => {
           <Gallery photos={photos} direction="column" />
         </Box>
       </Box>
-    </>    
+    </>
   )
 }
 

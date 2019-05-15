@@ -8,6 +8,7 @@ import { createGlobalStyle } from 'styled-components'
 
 import Header from '../header/header'
 import Profile from '../profile/profile'
+import Footer from '../footer/footer'
 
 const GlobalSyle = createGlobalStyle`
   body {
@@ -59,15 +60,13 @@ class Layout extends React.Component {
                   if (size === 'small' || size === 'xsmall')
                     return (
                       <Box
-                        direction="row"
                         pad="medium"
                         gap="small"
-                        align="start"
-                        alignSelf="center"
-                        justify="center"
-                      //background="light-2"
                       >
-                        {this.props.children}
+                        <Box as="main">
+                          {this.props.children}
+                        </Box>
+                        <Footer />
                       </Box>
                     )
                   else
@@ -79,13 +78,13 @@ class Layout extends React.Component {
                         align="start"
                         alignSelf="center"
                         justify="center"
-                      //background="light-2"
                       >
                         <Box as="main" basis="large" direction="row">
                           {this.props.children}
                         </Box>
-                        <Box as="aside" basis="medium">
+                        <Box as="aside" basis="medium" gap="medium">
                           <Profile />
+                          <Footer />
                         </Box>
                       </Box>
                     )
