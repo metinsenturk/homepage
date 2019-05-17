@@ -11,8 +11,23 @@ updated: 01/30/2018
 Welcome to the introduction to C# tutorials. These start with interactive lessons
 that you can run in your browser.
 
-![Cover](/test.jpg)
-![Cover2](/src/assets/aa.jpg)
+![Cover](test.jpg)
+
+![Cover](./test.jpg)
+
+``` python
+import pandas as pd
+df = pd.readcsv('')
+
+df.head()
+```
+
+```python
+s = "Python syntax highlighting"
+print s
+
+df.head()
+```
 
 The first lessons explain C# concepts using small snippets of code. You'll
 learn the basics of C# syntax and how to work with data types like strings,

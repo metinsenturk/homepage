@@ -6,7 +6,6 @@ import SEO from '../components/seo/seo';
 import { graphql } from 'gatsby';
 
 const IndexPage = ({ data }) => {
-  console.log(data.site.siteMetadata)
   const { indexText } = data.site.siteMetadata;
 
   return (
@@ -18,7 +17,7 @@ const IndexPage = ({ data }) => {
           <Box pad="large" justify="between" fill="vertical">
             <Box>
               <Heading level="1">{ indexText.title }</Heading>
-              <Paragraph> {indexText.description} Find out about my <InternalLink to="/blog/"><Anchor as="span" label="blog"/></InternalLink> and <InternalLink to="/album/"><Anchor as="span" label="photographs"/></InternalLink>.
+              <Paragraph size="large"> {indexText.description} Find out about my <InternalLink to="/blog/"><Anchor as="span" label="blog"/></InternalLink> and <InternalLink to="/album/"><Anchor as="span" label="photographs"/></InternalLink>.
             </Paragraph>
             </Box>
             <Box>

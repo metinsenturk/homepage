@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import { Heading, Box, Text, Markdown } from 'grommet'
+import { Heading, Box, Text, Markdown, Paragraph } from 'grommet'
 import { Image } from 'grommet'
 import SEO from '../components/seo/seo';
 
@@ -12,7 +12,7 @@ export default ({ data }) => {
   const overrides = {
     img: { component: Image, props: { fit: "cover" } },
     pre: { props: { size: "large" } },
-    p: { component: Text, props: { size: "medium" } }
+    p: { component: Paragraph, props: { size: "medium" } }
   }
 
   return (
@@ -30,7 +30,7 @@ export default ({ data }) => {
           <Heading> {about.frontmatter.title}</Heading>
           <Text>{about.frontmatter.description}</Text>
           <Markdown components={overrides}>
-            {about.rawMarkdownBody}
+            {about.html}
           </Markdown>
         </Box>
       </Box>

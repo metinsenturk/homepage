@@ -56,20 +56,29 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sharp',
+    `gatsby-plugin-sharp`,
     'gatsby-plugin-offline',
     'gatsby-transformer-sharp',
     'gatsby-transformer-json',
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
           {
-            resolve: 'gatsby-remark-images',
+            resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 970,
+              maxWidth: 1080,
+              showCaptions: true,
+              quality: 60
             },
           },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              //classPrefix: "language-",
+              showLineNumbers: true
+            },
+          }
         ],
       },
     },

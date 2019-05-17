@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Box, Markdown, Heading, Text, Anchor, ResponsiveContext } from "grommet"
+import { Box, Markdown, Heading, Text, Anchor, ResponsiveContext, Paragraph } from "grommet"
 import { Previous } from "grommet-icons"
 import ShareVia from '../components/share/share'
 import SEO from '../components/seo/seo';
@@ -8,13 +8,13 @@ import { InternalLink } from '../components/internal/internal'
 
 export default ({ data }) => {
   // console.log(data)
-  const { frontmatter, rawMarkdownBody, fields } = data.markdownRemark
+  const { frontmatter, html, fields } = data.markdownRemark
   const url = data.site.siteMetadata.siteUrl + '/blog/' + fields.slug.split('/')[1] + '/'
 
   const overrides = {
     p: {
-      component: Text,
-      props: { size: "medium", basis: "large" }
+      component: Paragraph,
+      props: { size: "medium"} 
     },
     pre: {
       props: { size: "medium" }
@@ -35,7 +35,7 @@ export default ({ data }) => {
           updated: frontmatter.updated
         }} />
       <Box basis="large">
-      <ResponsiveContext.Consumer>
+        <ResponsiveContext.Consumer>
           {(size) => {
             let pad = (size === 'small' || size === 'xsmall') ? "large" : "xsmall"
             return (
@@ -53,7 +53,7 @@ export default ({ data }) => {
           <Heading>{frontmatter.title}</Heading>
           <Text>{frontmatter.date}</Text>
           <Markdown components={overrides}>
-            {rawMarkdownBody}
+            {html}
           </Markdown>
         </Box>
       </Box>

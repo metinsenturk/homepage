@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import { Grommet, ResponsiveContext, Box } from 'grommet'
 import { base, dark, grommet } from 'grommet/themes';
+import { deepMerge } from "grommet/utils";
 import { createGlobalStyle } from 'styled-components'
 
 import Header from '../header/header'
@@ -15,10 +16,26 @@ const GlobalSyle = createGlobalStyle`
     margin: 0
   }
 `
+const grommetEdit = deepMerge(grommet, {
+  paragraph: {
+    medium: {
+      maxWidth: "auto"
+    }
+  }
+});
+
+const darkEdit = deepMerge(dark, {
+  paragraph: {
+    medium: {
+      maxWidth: "auto"
+    }
+  }
+});
+
 const GrommetThemes = {
-  grommet,
+  grommetEdit,
   base,
-  dark,
+  darkEdit,
 };
 
 // eslint-disable-next-line 
@@ -28,7 +45,7 @@ const theme = {
       family: 'Roboto',
       size: '24px',
       height: '20px',
-    },
+    }
   },
 };
 
@@ -52,7 +69,7 @@ class Layout extends React.Component {
               title={data.site.siteMetadata.title}
               htmlAttributes={{ lang: data.site.siteMetadata.siteLanguage }}            
             />
-            <Grommet theme={this.state.theme ? GrommetThemes.grommet : GrommetThemes.dark} full={true}>
+            <Grommet theme={this.state.theme ? GrommetThemes.grommetEdit : GrommetThemes.darkEdit} full={true}>
               <GlobalSyle />
               <Header theme={{ status: this.state.theme, onClick: this.onThemeChange }} />
               <ResponsiveContext.Consumer>
