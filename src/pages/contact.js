@@ -85,7 +85,7 @@ class Contact extends Component {
 
         const success = () => {
             var { status, name, select, email, message } = this.state
-            const CONTENT = `\`\`\`js\n${JSON.stringify({ status, name, select, email, message }, null, 2)}\`\`\``
+            const CONTENT = `\`\`\`json \n${JSON.stringify({ status, name, select, email, message }, null, 2)}\`\`\``
 
             return (
                 <Box basis="large" fill={true}>

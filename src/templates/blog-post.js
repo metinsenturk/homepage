@@ -16,9 +16,9 @@ export default ({ data }) => {
       component: Paragraph,
       props: { size: "medium"} 
     },
-    pre: {
-      props: { size: "medium" }
-    }
+    // pre: {
+    //   props: { size: "medium" }
+    // }
   }
 
   return (
