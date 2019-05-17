@@ -37,9 +37,9 @@ export default ({ data }) => {
       <Box basis="large">
       <ResponsiveContext.Consumer>
           {(size) => {
-            let pad = (size === 'small' || size === 'xsmall') ? "medium" : "xsmall"
+            let pad = (size === 'small' || size === 'xsmall') ? "large" : "xsmall"
             return (
-              <Box pad={pad} justify="between" align="center" direction="row">
+              <Box pad={{ vertical: pad, horizontal: "xsmall" }} justify="between" align="center" direction="row">
                 <ShareVia />
                 <InternalLink to='/blog/'>
                   <Anchor as="span" icon={<Previous />} label="Back" />

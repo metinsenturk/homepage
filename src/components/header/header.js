@@ -102,7 +102,7 @@ class Header extends React.Component {
         align="center"
         justify="around"
       >
-        <InternalLink to="/">
+        <InternalLink to="/" >
           <Anchor as="span" style={{ textDecoration: 'none', boxShadow: 'none' }}>
             <Heading level="2"> MS</Heading>
           </Anchor>

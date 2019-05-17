@@ -3,7 +3,12 @@ import { Heading, Box, Anchor, Image, Text, Stack, Paragraph } from 'grommet'
 import { InternalLink } from '../components/internal/internal'
 
 import SEO from '../components/seo/seo';
-const IndexPage = () => {
+import { graphql } from 'gatsby';
+
+const IndexPage = ({ data }) => {
+  console.log(data.site.siteMetadata)
+  const { indexText } = data.site.siteMetadata;
+
   return (
     <>
       <SEO />
@@ -12,9 +17,8 @@ const IndexPage = () => {
           <Box><Image fit="cover" src="//source.unsplash.com/random" /></Box>
           <Box pad="large" justify="between" fill="vertical">
             <Box>
-              <Heading level="1">Hi there.</Heading>
-              <Paragraph>
-                Cras nec lectus nulla. Morbi vel venenatis lorem, vitae faucibus mi. Vivamus est mi, faucibus ut nibh ut, pharetra volutpat risus. Quisque auctor mi eu semper aliquam. Maecenas pretium libero enim, eu suscipit massa sollicitudin ac. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Find out about my <InternalLink to="/blog/"><Anchor label="blog"/></InternalLink> and <InternalLink to="/album/"><Anchor label="photographs"/></InternalLink>.
+              <Heading level="1">{ indexText.title }</Heading>
+              <Paragraph> {indexText.description} Find out about my <InternalLink to="/blog/"><Anchor as="span" label="blog"/></InternalLink> and <InternalLink to="/album/"><Anchor as="span" label="photographs"/></InternalLink>.
             </Paragraph>
             </Box>
             <Box>
@@ -27,4 +31,17 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage
+export default IndexPage;
+
+export const query = graphql`
+query {
+  site {
+    siteMetadata {
+      indexText {
+        title
+        description
+      }
+    }
+  }
+}
+`

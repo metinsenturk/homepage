@@ -7,12 +7,13 @@ cover: './test.jpg'
 ---
 
 ## image test 1
-![Cover](./test.jpg)
+![Cover](./test-1.jpeg)
 
 ## image test 2
 ![Cover2](http://v2.grommet.io/assets/Wilderpeople_Ricky.jpg)
 
 ## code example
+
 ```python
 import pandas as pd
 df = pd.readcsv('')

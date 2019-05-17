@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: `/blog`,
   siteMetadata: {
     // basic
     pathPrefix: '/',
@@ -47,16 +48,31 @@ module.exports = {
       github: "metinsenturk"
     },
     googleAnalyticsId: '',
-    sourceUrl: ''
-
+    sourceUrl: '',
+    indexText: {
+      title: 'Hi There.',
+      description: 'Cras nec lectus nulla. Morbi vel venenatis lorem, vitae faucibus mi. Vivamus est mi, faucibus ut nibh ut, pharetra volutpat risus. Quisque auctor mi eu semper aliquam. Maecenas pretium libero enim, eu suscipit massa sollicitudin ac. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
+    }
   },
   plugins: [
     'gatsby-plugin-react-helmet',
-    'gatsby-transformer-sharp',
-    'gatsby-transformer-json',
-    'gatsby-transformer-remark',
     'gatsby-plugin-sharp',
     'gatsby-plugin-offline',
+    'gatsby-transformer-sharp',
+    'gatsby-transformer-json',
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 970,
+            },
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

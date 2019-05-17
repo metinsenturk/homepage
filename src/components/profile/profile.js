@@ -18,6 +18,7 @@ const Profie = (props) => (
                                 width="small"
                                 height="small"
                                 overflow="hidden"
+                                responsive={false}
                                 //elevation="xsmall"          
                                 margin={{ bottom: 'small', top: 'none', left: 'none', right: 'small' }}
                             >
