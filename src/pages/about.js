@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import { Heading, Box, Text, Markdown, Paragraph } from 'grommet'
+import { Heading, Box, Text, Paragraph } from 'grommet'
 // import { Image } from 'grommet'
 import SEO from '../components/seo/seo';
 
@@ -9,6 +9,7 @@ export default ({ data }) => {
   const about = data.about.edges[0].node
   //console.log(about)
 
+  // eslint-disable-next-line
   const overrides = {
     //img: { component: Image, props: { fit: "cover" } },
     pre: { props: { size: "large" } },
@@ -29,9 +30,12 @@ export default ({ data }) => {
         <Box as="article" gap="medium" elevation="xsmall" pad={{ horizontal: "medium", vertical: "xsmall" }}>
           <Heading> {about.frontmatter.title}</Heading>
           <Text>{about.frontmatter.description}</Text>
-          <Markdown components={overrides}>
-            {about.html}
-          </Markdown>
+          <div
+            style={{ maxWidth: 'auto' }}
+            dangerouslySetInnerHTML={{
+              __html: about.html,
+            }}
+          />
         </Box>
       </Box>
     </>

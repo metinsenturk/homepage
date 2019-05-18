@@ -57,13 +57,13 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     `gatsby-plugin-sharp`,
-    'gatsby-plugin-offline',
     'gatsby-transformer-sharp',
     'gatsby-transformer-json',
     {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          `gatsby-remark-responsive-iframe`,
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -135,5 +135,9 @@ module.exports = {
         icon: 'src/assets/gatsby-icon.png', 
       },
     },
+    'gatsby-plugin-netlify',
+    'gatsby-plugin-robots-txt',
+    'gatsby-plugin-sitemap',
+    'gatsby-plugin-offline',
   ],
 }

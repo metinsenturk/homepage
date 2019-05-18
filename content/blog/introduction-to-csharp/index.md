@@ -11,6 +11,12 @@ updated: 01/30/2018
 Welcome to the introduction to C# tutorials. These start with interactive lessons
 that you can run in your browser.
 
+## gif test 1
+<iframe src="https://giphy.com/embed/7eAvzJ0SBBzHy" width="480" height="320" frameBorder="0" allowFullScreen></iframe>
+
+## iframe test
+<iframe width="560" height="315" src="https://www.youtube.com/embed/T272LJ5026M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ![Cover](test.jpg)
 
 ![Cover](./test.jpg)
