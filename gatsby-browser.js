@@ -12,4 +12,6 @@ exports.wrapPageElement = ({ element, props }) => {
 }
 
 // markdown code syntaxing
-require("./src/assets/prism.css")
+require("prismjs/themes/prism-solarizedlight.css")
+require("prismjs/plugins/line-numbers/prism-line-numbers.css")
+require("./src/assets/prism-custom.css")

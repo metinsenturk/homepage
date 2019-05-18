@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { Heading, Box, Text, Markdown, Paragraph } from 'grommet'
-import { Image } from 'grommet'
+// import { Image } from 'grommet'
 import SEO from '../components/seo/seo';
 
 export default ({ data }) => {
@@ -10,7 +10,7 @@ export default ({ data }) => {
   //console.log(about)
 
   const overrides = {
-    img: { component: Image, props: { fit: "cover" } },
+    //img: { component: Image, props: { fit: "cover" } },
     pre: { props: { size: "large" } },
     p: { component: Paragraph, props: { size: "medium" } }
   }

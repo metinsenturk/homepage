@@ -33,9 +33,9 @@ const darkEdit = deepMerge(dark, {
 });
 
 const GrommetThemes = {
-  grommetEdit,
+  grommet: grommetEdit,
   base,
-  darkEdit,
+  dark: darkEdit,
 };
 
 // eslint-disable-next-line 
@@ -69,7 +69,7 @@ class Layout extends React.Component {
               title={data.site.siteMetadata.title}
               htmlAttributes={{ lang: data.site.siteMetadata.siteLanguage }}            
             />
-            <Grommet theme={this.state.theme ? GrommetThemes.grommetEdit : GrommetThemes.darkEdit} full={true}>
+            <Grommet theme={this.state.theme ? GrommetThemes.grommet : GrommetThemes.dark} full={true}>
               <GlobalSyle />
               <Header theme={{ status: this.state.theme, onClick: this.onThemeChange }} />
               <ResponsiveContext.Consumer>

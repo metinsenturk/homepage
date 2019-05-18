@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Box, Markdown, Heading, Text, Anchor, ResponsiveContext, Paragraph } from "grommet"
+import { Box, Heading, Text, Anchor, ResponsiveContext, Paragraph } from "grommet"
 import { Previous } from "grommet-icons"
 import ShareVia from '../components/share/share'
 import SEO from '../components/seo/seo';
@@ -11,14 +11,15 @@ export default ({ data }) => {
   const { frontmatter, html, fields } = data.markdownRemark
   const url = data.site.siteMetadata.siteUrl + '/blog/' + fields.slug.split('/')[1] + '/'
 
+  // eslint-disable-next-line 
   const overrides = {
     p: {
-      component: Paragraph,
+      // component: Paragraph,
       props: { size: "medium"} 
     },
-    // pre: {
-    //   props: { size: "medium" }
-    // }
+    pre: {
+      props: { size: "medium" }
+    }
   }
 
   return (
@@ -51,10 +52,19 @@ export default ({ data }) => {
         {/** TODO: temp solution to show footer, article does not fit its contents on mobile. */}
         <Box as="article" elevation="xsmall" overflow="auto" pad={{ horizontal: "medium", vertical: "xsmall" }}>
           <Heading>{frontmatter.title}</Heading>
+          <Paragraph>{frontmatter.description}</Paragraph>
           <Text>{frontmatter.date}</Text>
-          <Markdown components={overrides}>
-            {html}
-          </Markdown>
+          <br />
+          <h1 id="test1">{frontmatter.title}</h1>
+          <p id="test2">{frontmatter.description}</p>
+          <span id="test3">{frontmatter.date}</span>
+          <div
+          style={{ maxWidth: 'auto' }}
+                dangerouslySetInnerHTML={{
+                  __html: html,
+                }}
+              />
+          {/** <Markdown overrides /> does not align well the code. Temporarily setting html will do the work. */}
         </Box>
       </Box>
     </>
