@@ -18,6 +18,8 @@ export default ({ data }) => {
     updated,
   } = data.album
   const images = data.images.edges
+  const { siteUrl, social } = data.site.siteMetadata
+  const url = siteUrl + '/album/' + slug.split('/')[1] + '/'
 
   const photos = []
   images.map(({ node }, index) => photos.push({
@@ -35,7 +37,7 @@ export default ({ data }) => {
             let pad = (size === 'small' || size === 'xsmall') ? "medium" : "xsmall"
             return (
               <Box pad={pad} justify="between" align="center" direction="row">
-                <ShareVia />
+                <ShareVia url={url} title={title} excerpt={description} hashtags={['gatsby', 'sd']} via={social.twitter} />
                 <InternalLink to='/album/'>
                   <Anchor as="span" icon={<Previous />} label="Back" />
                 </InternalLink>
@@ -59,6 +61,14 @@ export default ({ data }) => {
 
 export const query = graphql`
   query AlbumDatabySlug($slug: String!, $relativeDirectory: String!) {
+    site {
+      siteMetadata {
+        siteUrl
+        social {
+          twitter
+        }
+      }
+    }
     album: albumsJson(slug: { eq: $slug }) {
       id
       title

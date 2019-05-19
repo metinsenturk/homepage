@@ -57,7 +57,7 @@ export const query = graphql`
         }
       }
     }
-    albums: allAlbumsJson {
+    albums: allAlbumsJson (sort: { fields: [created], order: DESC}) {
       edges {
         node {
           title

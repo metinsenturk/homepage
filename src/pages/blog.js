@@ -59,13 +59,17 @@ query {
       }
     }
   }
-  allMarkdownRemark(filter: {fields: {slug: {ne: "/about-me/"}}}) {
+  allMarkdownRemark(
+    filter: {fields: {slug: {ne: "/about-me/"}}},
+    sort: { fields: [frontmatter___date], order: DESC}
+  ) {
     edges {
       node {
         frontmatter {
           title
           description
           date
+          tags
           cover {
             childImageSharp {
               fluid(maxWidth: 400, maxHeight: 250) {

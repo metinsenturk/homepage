@@ -97,6 +97,7 @@ export const query = graphql`
         date
         created
         updated
+        tags
       }
       fields {
         slug

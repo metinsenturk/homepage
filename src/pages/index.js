@@ -16,9 +16,10 @@ const IndexPage = ({ data }) => {
           <Box><Image fit="cover" src="//source.unsplash.com/random" /></Box>
           <Box pad="large" justify="between" fill="vertical">
             <Box>
+              {indexText.enabled ? (<Box>
               <Heading level="1">{ indexText.title }</Heading>
               <Paragraph size="large"> {indexText.description} Find out about my <InternalLink to="/blog/"><Anchor as="span" label="blog"/></InternalLink> and <InternalLink to="/album/"><Anchor as="span" label="photographs"/></InternalLink>.
-            </Paragraph>
+            </Paragraph></Box>) : (<></>)}
             </Box>
             <Box>
               <Text size="xsmall">Courtesy of Unsplash.</Text>
@@ -39,6 +40,7 @@ query {
       indexText {
         title
         description
+        enabled
       }
     }
   }
