@@ -30,6 +30,7 @@
     "react-icons": "^3.7.0",
     "react-photo-gallery": "^6.3.4",
     "react-photo-grid": "^1.4.4",
+    "react-share": "^3.0.0",
     "styled-components": "^4.2.0"
   },
   "keywords": [

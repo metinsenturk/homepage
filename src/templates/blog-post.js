@@ -8,8 +8,9 @@ import { InternalLink } from '../components/internal/internal'
 
 export default ({ data }) => {
   // console.log(data)
+  const { siteUrl, social } = data.site.siteMetadata
   const { frontmatter, html, fields } = data.markdownRemark
-  const url = data.site.siteMetadata.siteUrl + '/blog/' + fields.slug.split('/')[1] + '/'
+  const url = siteUrl + '/blog/' + fields.slug.split('/')[1] + '/'
 
   // eslint-disable-next-line 
   const overrides = {
@@ -41,7 +42,7 @@ export default ({ data }) => {
             let pad = (size === 'small' || size === 'xsmall') ? "large" : "xsmall"
             return (
               <Box pad={{ vertical: pad, horizontal: "xsmall" }} justify="between" align="center" direction="row">
-                <ShareVia />
+                <ShareVia url={url} title={frontmatter.title} excerpt={frontmatter.excerpt} hashtags={['gatsby', 'sd']} via={social.twitter} />
                 <InternalLink to='/blog/'>
                   <Anchor as="span" icon={<Previous />} label="Back" />
                 </InternalLink>
@@ -76,6 +77,9 @@ export const query = graphql`
     site {
       siteMetadata {
         siteUrl
+        social {
+          twitter
+        }
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {

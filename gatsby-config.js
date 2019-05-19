@@ -41,7 +41,7 @@ module.exports = {
     // other
     social: {
       facebook: "mtnSntrk",
-      twitter: "@machinmetosh",
+      twitter: "machinmetosh",
       linkedin: "metinsenturk",
       telegram: "@metinsenturk",
       email: "metinsenturk@me.com",
