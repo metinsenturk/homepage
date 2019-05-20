@@ -75,7 +75,7 @@ class Contact extends Component {
                         <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </Text>
-                        <Markdown options={{ forceBlock: true }}>
+                        <Markdown>
                             {CONTENT}
                         </Markdown>
                     </Box>
@@ -100,7 +100,7 @@ class Contact extends Component {
                         <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         </Text>
-                        <Markdown options={{ forceBlock: true }}>
+                        <Markdown>
                             {CONTENT}
                         </Markdown>
                     </Box>

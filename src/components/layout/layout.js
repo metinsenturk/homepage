@@ -71,7 +71,7 @@ class Layout extends React.Component {
             />
             <Grommet theme={this.state.theme ? GrommetThemes.grommet : GrommetThemes.dark} full={true}>
               <GlobalSyle />
-              <Header theme={{ status: this.state.theme, onClick: this.onThemeChange }} />
+              <Header headercolor={data.site.siteMetadata.headercolor} theme={{ status: this.state.theme, onClick: this.onThemeChange }} />
               <ResponsiveContext.Consumer>
                 {(size) => {
                   if (size === 'small' || size === 'xsmall')
@@ -133,6 +133,7 @@ query SiteTitleQuery {
     siteMetadata {
       title
       siteLanguage
+      headercolor
       metaDefault {
         title
         description

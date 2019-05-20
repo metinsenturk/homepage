@@ -84,7 +84,7 @@ const MobileHeader = (props) => {
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { mobileMenu: false };
+    this.state = { mobileMenu: false, headertheme: this.props.headercolor ? this.props.headercolor : HEADERCOLOR };
   }
 
   mobileOnClick = () => {
@@ -97,7 +97,7 @@ class Header extends React.Component {
       <Box
         as="header"
         direction="row"
-        background={HEADERCOLOR}
+        background={this.state.headertheme}
         gap="medium"
         align="center"
         justify="around"
