@@ -32,7 +32,7 @@ class Blog extends Component {
                   )}
                 <Box pad="medium">
                   <Box direction="row" justify="between" align="center">
-                    <Heading level="5" margin={{ vertical: "xsmall" }}>{node.frontmatter.title}</Heading>
+                    <Heading level="3" margin={{ vertical: "xsmall" }}>{node.frontmatter.title}</Heading>
                     <Text as="span">{node.frontmatter.date}</Text>
                   </Box>
                   <Text>{node.frontmatter.description}</Text>

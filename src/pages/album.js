@@ -31,7 +31,7 @@ export default class Album extends Component {
                   <PhotoGrid imagesList={album_images} />
                   <Box pad="medium">
                     <Box direction="row" justify="between" align="center">
-                      <Heading level="4" margin={{ vertical: "small" }}>{album.node.title}</Heading>
+                      <Heading level="3" margin={{ vertical: "small" }}>{album.node.title}</Heading>
                       <Text>{album.node.created}</Text>
                     </Box>
                     <Text>{album.node.description}</Text>
