@@ -10,6 +10,7 @@ import { createGlobalStyle } from 'styled-components'
 import Header from '../header/header'
 import Profile from '../profile/profile'
 import Footer from '../footer/footer'
+import Subscribe from '../subscribe/subscribe';
 
 const GlobalSyle = createGlobalStyle`
   body {
@@ -52,7 +53,8 @@ const theme = {
 class Layout extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { theme: this.props.theme };
+    let theme = (new Date().getHours() < 19);
+    this.state = { theme: theme };
   }
 
   onThemeChange = () => {
@@ -101,6 +103,7 @@ class Layout extends React.Component {
                         </Box>
                         <Box as="aside" basis="medium" gap="medium">
                           <Profile />
+                          <Subscribe />
                           <Footer />
                         </Box>
                       </Box>
@@ -119,12 +122,7 @@ export {GrommetThemes}
 export default Layout
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-  theme: PropTypes.bool
-}
-
-Layout.defaultProps = {
-  theme: true
+  children: PropTypes.node.isRequired
 }
 
 const query = graphql`

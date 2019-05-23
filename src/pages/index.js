@@ -13,7 +13,7 @@ const IndexPage = ({ data }) => {
       <SEO />
       <Box elevation="small" overflow="hidden" >
         <Stack>
-          <Box><Image fit="cover" src="//source.unsplash.com/random" /></Box>
+          <Box><Image fit="cover" src={`//source.unsplash.com/${indexText.picture}`} /></Box>
           <Box pad="large" justify="between" fill="vertical">
             <Box>
               {indexText.enabled ? (<Box>
@@ -41,6 +41,7 @@ query {
         title
         description
         enabled
+        picture
       }
     }
   }

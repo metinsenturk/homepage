@@ -47,10 +47,10 @@ module.exports = {
       email: "metinsenturk@me.com",
       github: "metinsenturk"
     },
-    googleAnalyticsId: '',
     sourceUrl: '',
     indexText: {
       enabled: true,
+      picture: "random", // random, daily, weekly
       title: 'Hi There.',
       description: 'Cras nec lectus nulla. Morbi vel venenatis lorem, vitae faucibus mi. Vivamus est mi, faucibus ut nibh ut, pharetra volutpat risus. Quisque auctor mi eu semper aliquam. Maecenas pretium libero enim, eu suscipit massa sollicitudin ac. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
     },
